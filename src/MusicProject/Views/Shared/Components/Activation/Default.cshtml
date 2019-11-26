@@ -1,0 +1,18 @@
+﻿<form asp-controller="Register" asp-action="ConfirmYourMobile" method="post"
+      class="form-horizontal" asp-area="Identity" data-ajax="true" data-ajax-method="post" data-ajax-complete="activeCompleted">
+  <partial name="_CustomValidationSummary" />
+  <div class="inputBox">
+    <label for="ActivationCode" class="inputText">کد تایید تلفن همراه</label>
+  
+    <input dir="rtl" name="ActivationCode" id="ActivationCode" class="input" />
+    <span class="text-danger active-error">
+      کد تایید وارد شده اشتباه می باشد
+    </span>
+  </div>
+  <div class="row">
+    <input type="hidden" id="registerUserId" name="registerUserId" />
+    <div class=" col-md-12">
+      <button type="submit" class="btn btn-register float-left">تایید </button>
+    </div>
+  </div>
+</form>

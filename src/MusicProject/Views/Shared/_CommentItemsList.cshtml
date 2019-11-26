@@ -1,0 +1,99 @@
+﻿@model PagedCommentViewModel
+@inject IUsersPhotoService PhotoService
+@if (Model != null)
+{
+    var Photo = Model.UserId == 0 ? "~/content/images/user-card.jpg"
+        : PhotoService.FindPhotoByUserId((int)Model.UserId);
+    foreach (var comment in Model.CommentItem)
+    {
+        int count = 0;
+        @if (comment.InverseParent != null)
+        {
+            foreach (var cmnt in comment.InverseParent.Where(x=>x.IsPublished))
+            {
+                count++;
+            }
+        }
+        var photoUrl = PhotoService.FindPhotoByUserId(comment.UserCommentId);
+        if (comment.ParentId == null)
+        {
+                <div class="row pt-2 pb-2">
+                    <div class="col-sm-1">
+                        <img src="@photoUrl" class="comment-img" asp-append-version="true">
+                        <span style="font-weight:500;">@comment.Name</span>
+                    </div>
+                    <div class="col-sm-11">
+                        <div style="border-bottom: 1px solid #ccc;padding-bottom: 15px">
+                            <span style="white-space:pre;">@comment.Body</span>
+                        </div>
+                        <div class="float-left row" style="color:chocolate">
+                            <a role="button" class="btn" style="color: chocolate; margin-left: 20px;" data-toggle="collapse" data-target="#NewComment_@comment.Id">
+                                <span>(@count) پاسخ </span>
+                                <i class="fas fa-comment-alt"></i>
+                            </a>
+                            <div class="comment-likec" data-id="@comment.Id" style="margin-left: 10px; margin-top: 5px; cursor:pointer">
+                                <span>@comment.Like  </span> <i class="fas fa-thumbs-up"></i>
+                            </div>
+                            <div class="comment-dislikec" data-id="@comment.Id" style="margin-left: 10px; margin-top: 5px;cursor:pointer">
+                                <span>@comment.Dislike  </span> <i class="fas fa-thumbs-down"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container collapse " id="NewComment_@comment.Id" style="margin-right: 30px;">
+
+                        <form asp-controller="Comment" asp-action="Comment"
+                              data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                              data-ajax-failure="onFailed" data-ajax-success="onSuccess"
+                              data-ajax="true" data-ajax-method="POST">
+
+                            <div class="d-flex  align-items-center">
+                                <img src="@Photo" asp-append-version="true" class="comment-img" />
+                                <div class="flex-grow-1 comment-input">
+                                    <textarea class="reply-comment" type="text" style="width: 100%" placeholder="نظر خود را بنویسید..." name="comment" id="comment" value="" />
+                                </div>
+                                <input type="hidden" value="@Model.TypeId" name="id" id="id" />
+                                <input type="hidden" value="@comment.Id" name="Parent" id="Parent" />
+                                <input type ="hidden" value="@Model.Type" name="type" id="type" />
+                                <input type="submit" class="btn btn-sendcomment" style="background: url(/content/images/send-icon.jpg)" value="" />
+                            </div>
+                            <div id="Results"></div>
+                        </form>
+                    </div>
+
+                    <div class="container" style="margin-right: 30px; margin-top: 30PX;">
+                        @if (comment.InverseParent != null)
+                        {
+                            @foreach (var cmnt in comment.InverseParent.Where(x => x.IsPublished))
+                            {
+
+                                var photoUrlcmnt = PhotoService.FindPhotoByUserId(cmnt.UserCommentId);
+                                <div class="row pt-2 pb-2">
+                                    <div class="col-sm-1">
+                                        <img src="@photoUrlcmnt" class="comment-img" asp-append-version="true" />
+                                        <span style="font-weight:500;">@cmnt.Name</span>
+                                    </div>
+                                    <div class="col-sm-11">
+                                        <div style="border-bottom: 1px solid #ccc;padding-bottom: 15px">
+                                            <span style="white-space:pre;">@cmnt.Body</span>
+                                        </div>
+                                        <div class="float-left row" style="color:chocolate">
+                                            <div class="comment-likec" data-id="@cmnt.Id" style="margin-left: 10px; margin-top: 5px;cursor:pointer">
+                                                <span>@cmnt.Like  </span> <i class="fas fa-thumbs-up"></i>
+                                            </div>
+                                            <div class="comment-dislikec" data-id="@cmnt.Id" style="margin-left: 10px; margin-top: 5px;cursor:pointer">
+                                                <span>@cmnt.Dislike  </span> <i class="fas fa-thumbs-down"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            }
+        }
+    }
+    @section Scripts{
+
+    }

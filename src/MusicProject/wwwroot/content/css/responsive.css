@@ -1,0 +1,459 @@
+/*/* ==================================================
+	Media Query
+====================================================*/
+
+@media (max-width: 370px) {
+.content-wrapper{padding-top: 25px !important}
+body {overflow: auto;}
+#container {width: 100%;}
+.menu{display: none}
+.content-scroller {height: auto;left: 0;overflow: visible;position: relative;right:0}
+.content-wrapper {height: auto;margin-left: 0;width: 100%;overflow: hidden;position: absolute;}
+.content {border: medium none;float: none;overflow-y: auto;width: auto;height: 100%;border-bottom: 2px solid #aaa}
+.noscroll {overflow: hidden !important;}
+.introduction .inner {margin: 0;padding-top: 130px !important;width: 86%;}
+.ticker li { font-size: 7px;line-height: 15px;}
+#khabarjs h4{ font-size: 10px;width: 75%;line-height: 5px}
+#khabarjs{ bottom: auto;top: 2px;width: 75%;}
+.inner {padding: 5px 14px 10px 15px;font-size: 10px;}
+.inner > h2{font-size: 14px !important;line-height: 10px;}
+.title-divider {height: 3px;margin: 10px 0 4px;}
+#aboutProject{width: 100%}
+.col-5,.col-3,.col-2 ,.col-8,.col-7,.col-11,.col-4,.col-10,.col-9{width: 100%}
+.col-5 > h1 {font-size: 12px !important;}
+h2 {font-size: 16px !important;line-height: 22px !important;margin: 0 !important;}
+#aboutProject{ margin-right: 5px;margin-left: 5px}
+.about-con >.col-5{margin-right: 2px !important;}
+.about{background: none}
+#chapteroprate > .inner >.about-con > .col-3{ text-align: center;height: 110px;width: 25%;padding-top: 40px}
+#chapteroprate > .inner >.about-con > .col-5{ width: 70%}
+#chapteroprate .about-con p{padding-right: 10px}
+#chapteroprate > .inner >.about-con > .col-3 img{ margin: 0 auto;position: absolute;right: 0;left: 0}
+#chapterarchitecturalfeatures .col-11 {font-size: 12px;margin-right: 5px;}
+#chapterarchitecturalfeatures{background: none !important}
+#chapterarchitecturalfeatures .about-con h1{ color: #000 !important;margin: 0}
+#chapterarchitecturalfeatures .about-con {line-height: 25px}
+.featuteTitre{font-size: 13px}
+#chapterinvestment .col-4{margin-right: 0}
+#chaptercampign3 .col-10{margin-right: 0 !important}
+#chaptercampign3  h1{margin: 0}
+#chaptercampign3 .about-con{line-height: 24px}
+#chapterpioneer .col-8{margin-right: 0 !important}
+#chapterpioneer h1{margin: 0}
+#chaptergallery ul{margin-right: 0 !important}
+.ui-tabs-nav{ padding-right: 0;width: 100% }
+.ui-tabs.ui-tabs-vertical{width: 100% }
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav{width: 100%}
+#chapterclip{background: none}
+#NewsHead{padding-right: 0 !important;}
+#chapterclip .portfolio-con{margin-right: 0px !important;}
+.newstitle {font-size: 11px;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel{padding-right: 0}
+.archiveNews{right: 5%}
+#chaptercatalog a{margin-left: 0 !important}
+.textbox{width: 200px !important}
+.formcontact{width: 100%}
+.chaptercontact{background: none}
+#chaptersakenin{width: 100%}
+.portfolio{background: none}
+#chapterrequest,#chapterkarbari{display: none}
+#chaptercontact .icon-block{display: none}
+.content-wrapper .wrapper{padding: 0}
+#chaptercampign1 .container-sub,#chaptercampign2 .container-sub, #chaptergallery .container-sub,#chapterclip .container-sub{margin-top: 0px !important}
+#chapterarticle .middlematn h1,#chapterexpo .middlematn h1{margin: 0}
+#chapterclip .pic,#chaptergallery .pic{ margin-top: 5px; margin-bottom: 5px}
+.archiveNews {left: 5%;width: 115px;}
+.ui-tabs-panel .col-3{width: 20%}
+.ui-tabs-panel .col-8{width:70%}
+.ui-tabs-panel .col-7{width:60%}
+.ui-tabs-panel .newsdesc, #NewsHead .newstitle{margin-right: 20px}
+.ui-tabs-panel .newspic{height: 80px !important}
+.ui-tabs-panel {width: 90% !important}
+.ui-tabs-panel {width: 90% !important}
+#chaptercatalog .col-9 > div{height: 350px !important}
+.title{padding-top: 0px}
+#ContentPlaceHolder1_galleryname,#ContentPlaceHolder1_videoname{font-size: 14px !important}
+.generaloption,.chapternews,.ui-tabs.ui-tabs-vertical .ui-tabs-panel{background: none !important}
+#chaptercampign1 .portfolio-con,#chaptercampign2 .portfolio-con{margin-right: 0 !important}
+#NewsHead{min-height: 570px !important}
+.archiveNews {bottom: 10px;left: 2% !important;right: auto !important;width: 70px;}
+.printlogo{display: none}
+}
+
+@media (min-width: 370px) and (max-width: 660px) {
+.content-wrapper{padding-top: 25px !important}
+#chaptercontact .icon-block{display: none}
+    .chapternews{background: none}
+body {overflow: auto;}
+#container {width: 100%;}
+.menu{display: none}
+.content-scroller {height: auto;left: 0;overflow: visible;position: relative;right:0}
+.content-wrapper {height: auto;margin-left: 0;width: 100%;overflow: hidden;position: absolute;}
+.content {border: medium none;float: none;overflow-y: auto;width: auto;height: 100%;border-bottom: 2px solid #aaa}
+.noscroll {overflow: hidden !important;}
+.introduction .inner {margin: 0;padding-top: 130px !important;width: 86%;}
+.ticker li { font-size: 7px;line-height: 15px;}
+#khabarjs h4{ font-size: 10px;width: 75%;line-height: 5px}
+#khabarjs{ bottom: auto;top: 2px;width: 75%;}
+.inner {padding: 5px 14px 10px 15px;font-size: 10px;}
+.inner > h2{font-size: 14px !important;line-height: 10px;}
+.title-divider {height: 3px;margin: 10px 0 4px;}
+#aboutProject{width: 100%}
+.col-5,.col-3,.col-2 ,.col-8,.col-7,.col-11,.col-4,.col-10,.col-9{width: 100%}
+.col-5 > h1 {font-size: 12px !important;}
+h2 {font-size: 16px !important;line-height: 22px !important;margin: 0 !important;}
+#aboutProject{ margin-right: 5px;margin-left: 5px}
+.about-con >.col-5{margin-right: 2px !important;}
+.about{background: none}
+#chapteroprate > .inner >.about-con > .col-3{ text-align: center;height: 110px;width: 25%;}
+#chapteroprate > .inner >.about-con > .col-5{ width: 70%}
+.oprateimagetitle{margin-top: 5px}
+#chapteroprate .about-con p{padding-right: 10px}
+#chapterarchitecturalfeatures .col-11 {font-size: 12px;margin-right: 5px;}
+#chapterarchitecturalfeatures{background: none !important}
+#chapterarchitecturalfeatures .about-con h1{ color: #000 !important;margin: 0}
+#chapterarchitecturalfeatures .about-con {line-height: 25px}
+.featuteTitre{font-size: 13px}
+#chapterinvestment .col-4{margin-right: 0}
+#chaptercampign3 .col-10{margin-right: 0 !important}
+#chaptercampign3  h1{margin: 0}
+#chaptercampign3 .about-con{line-height: 24px}
+#chapterpioneer .col-8{margin-right: 0 !important}
+#chapterpioneer h1{margin: 0}
+#chaptergallery ul{margin-right: 0 !important}
+.ui-tabs-nav{ padding-right: 0;width: 100% }
+.ui-tabs.ui-tabs-vertical{width: 100% }
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav{width: 100%}
+#chapterclip{background: none}
+#NewsHead{padding-right: 0 !important;}
+#chapterclip .portfolio-con{margin-right: 0px !important;}
+.newstitle {font-size: 11px;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel{padding-right: 0}
+.archiveNews{right: 5%}
+#chaptercatalog a{margin-left: 0 !important}
+.textbox{width: 200px !important}
+.formcontact{width: 100%}
+.chaptercontact{background: none}
+#chaptersakenin{width: 100%}
+.portfolio{background: none}
+#chapterrequest,#chapterkarbari{display: none}
+.generaloption{background: none !important}
+#chapteroprate .oprateimagetitle{margin-left: 15px;width: 70px;}
+#chaptercampign1 .container-sub,#chaptersakenin .container-sub,#chaptercampign2 .container-sub, #chaptergallery .container-sub,#chapterclip .container-sub{margin-top: 0px !important}
+#chapterarticle .middlematn h1,#chapterexpo .middlematn h1{margin: 0}
+#chapterclip .pic,#chaptergallery .pic{ margin-top: 5px; margin-bottom: 5px}
+.archiveNews {left: 5%;width: 115px;}
+.ui-tabs-panel .col-3{width: 20%}
+.ui-tabs-panel .col-8{width:70%}
+.ui-tabs-panel .col-7{width:60%}
+.ui-tabs-panel .newsdesc, #NewsHead .newstitle{margin-right: 20px}
+.ui-tabs-panel .newspic{height: 80px !important}
+.ui-tabs-panel {width: 90% !important}
+#chaptercatalog .col-9> div{height: 350px !important}
+#formcontact h5{margin: 0}
+.ui-tabs-nav li{list-style-type: circle}
+#clips{text-align:center}
+#clips >div >h2{ margin: 0;padding: 0}
+#clips >div .newcontainer ul{ margin: 0;padding: 0}
+#clips >div .newcontainer{text-align:center !important}
+#clips >div .newcontainer ul li{ margin-top: 0}
+
+}
+
+
+
+@media (min-width: 590px) and (max-width: 767px) /*kamtar az 767*/
+{
+}
+
+@media (min-width: 765px) and (max-width: 989px) /*beine 768 va 979* ---     800*600 va    768*1024*/
+{
+    #chapteroprate{height: 700px}
+    #chapteroprate .oprateimagetitle{margin-left: 18px;width: 80px;}
+#chaptercampign1 .container-sub,#chaptersakenin .container-sub,#chaptercampign2 .container-sub, #chaptergallery .container-sub,#chapterclip .container-sub{margin-top: 0px !important}
+#chapterarticle .middlematn h1,#chapterexpo .middlematn h1{margin: 0}
+#chapterclip .pic,#chaptergallery .pic{ margin-top: 5px; margin-bottom: 5px}
+.archiveNews {left: 5%;width: 115px;}
+.ui-tabs-panel .col-3{width: 20%}
+.ui-tabs-panel .col-8{width:70%}
+.ui-tabs-panel .col-7{width:60%}
+.ui-tabs-panel .newsdesc, #NewsHead .newstitle{margin-right: 20px}
+.ui-tabs-panel .newspic{height: 80px !important}
+.ui-tabs-panel {width: 90% !important}
+#chaptercatalog .col-9> div{height: 350px !important}
+#formcontact h5{margin: 0}
+.ui-tabs-nav li{list-style-type: circle}
+#clips{text-align:center}
+#clips >div >h2{ margin: 0;padding: 0}
+#clips >div .newcontainer ul{ margin: 0;padding: 0}
+#clips >div .newcontainer{text-align:center !important}
+#clips >div .newcontainer ul li{ margin-top: 0}
+    #chapteroprate .col-3{width: 20%}
+#chapteroprate .col-5{width: 70%}
+    body {overflow: auto;}
+#container {width: 100%;}
+.menu{display: none}
+.content-scroller {height: auto;left: 0;overflow: visible !important;position: relative;right:0}
+.content-wrapper {height: auto;margin-left: 0;width: 100%;overflow: hidden;position: absolute;}
+.content {border: medium none;float: none;overflow-y: auto;width: auto;height: 100%;}
+.noscroll {overflow: hidden !important;}
+.introduction .inner {margin: 0;padding-top: 130px !important;width: 86%;}
+.ticker li { font-size: 7px;line-height: 15px;}
+#khabarjs h4{ font-size: 10px;width: 75%;line-height: 5px}
+#khabarjs{ bottom: auto;top: 2px;width: 75%;}
+.inner {padding: 5px 14px 10px 15px;font-size: 10px;}
+.inner > h2{font-size: 14px !important;line-height: 10px;}
+.title-divider {height: 3px;margin: 10px 0 4px;}
+#aboutProject{width: 100%}
+.col-5,.col-3,.col-2 ,.col-8,.col-7,.col-11,.col-4,.col-10,.col-9{width: 100%}
+.col-5 > h1 {font-size: 12px !important;}
+h2 {font-size: 16px !important;line-height: 22px !important;margin: 0 !important;}
+#aboutProject{ margin-right: 5px;margin-left: 5px}
+.about-con >.col-5{margin-right: 2px !important;}
+.about{background: none}
+#chapteroprate > .inner >.about-con > .col-3{ text-align: center;height: 110px}
+#chapteroprate > .inner >.about-con > .col-3 img{ margin: 0 auto;position: absolute;right: 0;left: 0}
+#chapterarchitecturalfeatures .col-11 {font-size: 12px;margin-right: 5px;}
+#chapterarchitecturalfeatures{background: none !important}
+#chapterarchitecturalfeatures .about-con h1{ color: #000 !important;margin: 0}
+#chapterarchitecturalfeatures .about-con {line-height: 25px}
+.featuteTitre{font-size: 13px}
+#chapterinvestment .col-4{margin-right: 0}
+#chaptercampign3 .col-10{margin-right: 0 !important}
+#chaptercampign3  h1{margin: 0}
+#chaptercampign3 .about-con{line-height: 24px}
+#chapterpioneer .col-8{margin-right: 0 !important}
+#chapterpioneer h1{margin: 0}
+#chaptergallery ul{margin-right: 0 !important}
+.ui-tabs-nav{ padding-right: 0;width: 100% }
+.ui-tabs.ui-tabs-vertical{width: 100% }
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav{width: 100%}
+#chapterclip{background: none}
+#NewsHead{padding-right: 0 !important;}
+#chapterclip .portfolio-con{margin-right: 0px !important;}
+.newstitle {font-size: 11px;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel{padding-right: 0}
+.archiveNews{right: 5%}
+#chaptercatalog a{margin-left: 0 !important}
+.textbox{width: 200px !important}
+.formcontact{width: 100%}
+.chaptercontact{background: none}
+#chaptersakenin{width: 100%}
+.portfolio,.generaloption,.chapternews{background: none}
+#chapterarchitecturalfeatures .jspContainer{height: 491px !important;}
+#chapteroprate .jspContainer{height: 1220px !important;}
+#chaptergallery .jspContainer{height: 500px !important;}
+#chapterrequest .jspContainer{height: 780px !important;}
+ #my-tooltip1 {bottom: 14px;left: 0;position: absolute;right: 0;text-align: center;}
+ #my-tooltip2 {bottom: 60px;left:120px;position: absolute;}
+ #my-tooltip3 {bottom: 110px;left: 0;position: absolute;right: 0;text-align: center;}
+#my-tooltip4 {bottom: 153px;left: 192px;position: absolute;}
+#my-tooltip5 {  position: absolute;right: 103px;text-align: center;top: 1px;}
+#my-tooltip6 {left: 0;position: absolute;right: 0;text-align: center;top: -41px;}
+}
+
+@media (min-width:1000px) and (max-width: 1090px) /*beine 985 va 1050--  1024*/
+{
+.pagePic{width: 90px}
+    .ui-tabs-nav{ padding-right: 10px;width: 170px !important}
+#txtaddress{width: 350px}
+.archiveNews {background: #ffd454 none repeat scroll 0 0;margin-bottom: 5px;padding-bottom: 0;position: absolute;right: 4%;text-align: center;width: 103px;}
+ .inner{margin-right:30px}
+.featuteTitre { font-size: 15px;}
+#chapterarchitecturalfeatures .col-11 {font-size: 14px}
+#emkanat .col-7{ width: 66%;margin-top: 190px}
+#chapteroprate .col-3{ width: 16%;text-align: center}
+#chapteroprate .col-5{ width: 58%;margin-right: 15px}
+#chapterabout .inner >h2{margin-top: 35px}
+#aboutProject { margin-right: 0;margin-left: 0}
+.newsdesc{margin-bottom: 0}
+body {font-size: 11px;}
+.middlematn {padding-right: 40px;font-size: 11px;}
+.social {position: absolute;bottom: -5px;}
+.social a {margin: 0 3px;}
+.social img {width: 25px !important;}
+ .jspPane {width: 854px !important}
+ .menu {width: 170px;}
+ .menu nav a {padding: 13px 9px;}
+ .generaloption {background: url("../images/1024/generalopback.jpg") no-repeat scroll center center / cover transparent;direction: rtl;background-size: 100% 100%}
+ .inner {padding: 13px 0px 22px 0px !important;}
+ .aboutimg {float: none;bottom: -10px !important;position: absolute;text-align: center;left: 1%;}
+ .tabliqdiv {float: left;bottom: -26px !important;color: #FFF;font-size: 14px !important;margin-left: 10px !important;}
+.chapternews {background: url("../images/1024/lighter.jpg?ver=1024") no-repeat scroll left bottom transparent;}
+.newspic {float: left;border: 1px solid #FFC20E;}
+.newstitle {margin-right: 12px;font-size: 9px;line-height: 11px;}
+.newsdesc {margin-right: 14px;font-size: 9px;}
+#cssmenu {height: 510px;}
+.menu nav a {font-size: 12px;}
+#light-bulb {position: relative;width: 228px;height: 197px;background: url(../images/1024/lamp0.png) no-repeat 0 0;z-index: 800;}
+#light-bulb2 {width: 241px;height: 197px;background: transparent url("../images/1024/lamp1.png") no-repeat scroll 0px 0px;}
+.logo img{margin: 0 auto;padding-top: 8px;width: 85px;}
+#cssmenu ul ul li a {font-size: 10px;}
+h2 {font-size: 26px;line-height: 14px;}
+.copyright {padding: 14px;}
+.bannernews {height: 198px !important;}
+.content-scroller {right: 170px;}
+.title {padding-right: 60px;font-size: 26px;margin-top: 20px;}
+.ui-tabs.ui-tabs-vertical {font-size: 10px;}
+.ui-tabs-nav li a {width: 78% !important;font-size: 9px;padding: 0px 14px 0px !important;}
+.content {width: 873px;}
+.portfolio {background: url("../images/1024/galleryfooter.jpg") no-repeat scroll left bottom transparent;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel{width: 43em}
+ #NewsHead .col-3, #NewsHead2 .col-3, #NewsHead3 .col-3, #NewsHead4 .col-3, #NewsHead5 .col-3, #NewsHead6 .col-3{width:16%}
+ .rnd{ font-size: 8.3px;  margin-right: 10px;}
+ #chapterrequest .about-con>div{ padding: 0;margin: 0; line-height: 25px;}
+ .chaptercontact {background: transparent url("../images/contactbg.png") no-repeat scroll right bottom / 51% 78%;}
+.newstitle{  font-size: 15px;line-height: 25px;padding-right: 10px;}
+.subTitle{margin-right: 25px}
+ .ui-tabs-panel .newspic{height: 75px}
+ .ui-tabs-panel .newstitle{font-size: 11px}
+ #my-tooltip1 {bottom: 14px;left: 0;position: absolute;right: 0;text-align: center;}
+ #my-tooltip2 {bottom: 60px;left:120px;position: absolute;}
+ #my-tooltip3 {bottom: 110px;left: 0;position: absolute;right: 0;text-align: center;}
+#my-tooltip4 {bottom: 153px;left: 192px;position: absolute;}
+#my-tooltip5 {  position: absolute;right: 103px;text-align: center;top: 1px;}
+#my-tooltip6 {left: 0;position: absolute;right: 0;text-align: center;top: -41px;}
+#newsArchiveBlog{margin:0 50px 0 0}
+#newsArchiveBlog .imgnews {height: 135px;width: 150px;}
+.logo{padding-top: 15px}
+.pageTitle{  font-size: 18px;margin-top: 20px;padding-right: 60px;}
+.contactIcon{display: none}
+#khabarjs{ bottom: 60px;width: 56%;}
+.generaloption{ background: url(/Content/images/bgEmkanat1024.png);background-size: 100% 100%}
+
+}
+
+@media (min-width:1100px) and (max-width: 1400px) /* bene 1100 ta 1400--  1360x768*/
+{ 
+    #chapterarchitecturalfeatures .col-11 {font-size: 14px}
+.logo > img {width: 100px !important;}
+.generaloption {background-size: 95%}
+#pica{ position: relative;width: 770px}
+#cssmenu{margin-top: 0px;}
+.imgnews{ height: 165px;width: 100%}
+#emkanat{margin-top: 150px}
+#emkanat h2{font-size: 27px; line-height: 27px}
+.contact-form{margin-top:0px;}
+.full-divider.con{ margin: 0;}
+.contact-con{ margin-top: 5px;}
+#chapteroprate{line-height: 30px}
+#chapteroprate h1{ margin-top: 0;margin-bottom:0}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel {width: 47em;}
+.content {width: 1200px;}
+body {font-size: 13px;overflow: auto;}
+.social {padding: 0px 0px 0px 30px;bottom: 1px;margin: 0 auto;}
+.social img {width: 30px !important;}
+.social a {margin: 0 1px;}
+#cssmenu ul ul li a {font-size: 12px;padding: 7px 26px;}
+#cssmenu ul ul li:first-child > a {padding-top: 13px;}
+#light-bulb {position: relative;width: 228px;height: 185px;background: url(../images/1024/lamp0.png) no-repeat 0 0;z-index: 800;}
+#light-bulb2 {width: 241px;height: 197px;background: transparent url("../images/1024/lamp1.png") no-repeat scroll 0px 0px;}
+.menu nav a {font-size: 14px;}
+.jspPane {width: 1155px !important;float: left;}
+.logo {width: 115px;margin: 0 auto;margin-top: -24px;}
+.copyright {bottom: -26px;font-family: "Oswald",sans-serif;font-size: 9px;color: #F8F8F8;line-height: 18px;text-align: center !important;margin: 0px auto;}
+.oprateimagetitle {float: left;margin-left: 33px;width: 89px;margin-top: 9px;}
+.aboutimg {float: none;bottom: 0px !important;position: absolute;text-align: center;left: 14%;}
+.logo{padding-top: 32px}
+.portfolio {background: url("../images/1024/galleryfooter.jpg") no-repeat scroll left bottom transparent;}
+#chapterclip{background: url('/images/1024/tizer.png') no-repeat scroll left bottom transparent;}
+#cssmenu {height:515px;}
+.about {background: url("../images/1024/aboutback.jpg") no-repeat scroll 80% 100% / contain transparent;background-size: 100% 84%}
+.title-divider {margin: 10px 0px 9px;}
+.clip_overlay {bottom: 0;}
+.span_overlay {bottom: 0;}
+.newsres {float: right;margin-right: 63px;}
+.tabliqdiv {float: left;position: absolute;bottom: 36%;color: #feb401;direction: ltr;font-size: 23px;margin-left: 10px;left: 0px;}
+.chapternews {background: url("../images/1024/lighter.jpg") no-repeat scroll left bottom transparent;}
+.chaptercontact {background: url("../images/1024/contactbg.png") no-repeat scroll right 50px transparent;}
+.inner {padding: 13px 34px 23px 7px;}
+.menu nav a {padding: 8.5px 15px 8.5px 0}
+#cssmenu ul > li.has-sub::after {top: 14.5px;}
+.menu {width: 200px;}
+.wrapper {width: 90%;}
+.content-wrapper {overflow: auto;position: relative;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav li a{font-size: 11px}
+.ui-tabs.ui-tabs-vertical .ui-tabs-nav{ width: 13em;}
+#wrapperkarbari {margin-top: 30px;}
+#my-tooltip1 {bottom: 26px;left: 0;position: absolute;right: 0;text-align: center;}
+#my-tooltip2 {bottom: 95px;left: 280px;position: absolute;}
+#my-tooltip3 {bottom: 178px;left: 0;position: absolute;right: 0;text-align: center;}
+#my-tooltip4 {bottom: 235px;left: 300px;position: absolute;}
+#my-tooltip5 {position: absolute;right: 353px;text-align: center;top: 18px;}
+#my-tooltip6 {left: 0;position: absolute;right: 0;text-align: center;top: -40px;}
+#khabarjs{width: 32%; bottom: 10px;}
+.blog-main {clear: both;margin: 0 100px 0 10px;padding: 4% 0;}
+.blog-list-details h3 {font-size: 12px;}
+.generaloption{ background: url(/Content/images/bgEmkanat1300.png);background-size: 100% 100%}
+
+}
+
+@media (min-width:1400px) and (max-width: 1500px) /* beine 1400 ta 1500-- 1440x900*/
+{#khabarjs{width: 38%; bottom: 75px;}
+ .imgnews {height: 165px;width: 100%;}
+ .blog-main {clear: both;margin: 0 100px 0 10px;padding: 4% 0;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel {width: 43em;}
+.archiveNews{right:3%}
+#emkanat{margin-top: 180px}
+.portfolio {background: url("../images/1024/galleryfooter.jpg") no-repeat scroll left bottom transparent;}
+.content {width: 1240px;}
+body {font-size: 13px;}
+.social {padding: 25px;position: absolute;bottom: 36px;}
+.social a {margin: 0 3px;}
+.social img {width: 30px !important;}
+ #cssmenu ul ul li a {font-size: 13px;}
+#light-bulb {position: relative;width: 228px;height: 197px;background: url(../images/1024/lamp0.png) no-repeat 0 0;z-index: 800;}
+#light-bulb2 {width: 241px;height: 197px;background: transparent url("../images/1024/lamp1.png") no-repeat scroll 0px 0px;}
+.menu nav a {font-size: 14px;}
+.jspPane {width: 1229px !important;}
+.logo {width: 115px;margin: 0 auto;}
+#my-tooltip1 {bottom: 33px;left: 0;position: absolute;right: 0;text-align: center;}
+#my-tooltip2 {bottom: 100px;left: 280px;position: absolute;}
+#my-tooltip3 {bottom: 190px;left: 0;position: absolute;right: 0;text-align: center;}
+#my-tooltip4 {bottom: 251px;left: 300px;position: absolute;}
+#my-tooltip5 {position: absolute;right: 353px;text-align: center;top: 13px;}
+#my-tooltip6 {left: 0;position: absolute;right: 0;text-align: center;top: -35px;}
+.generaloption{ background: url(/Content/images/bgEmkanat1400.png);background-size: 100% 100%}
+
+}
+
+@media (min-width:1500px) and (max-width: 1700px) { /*1600x900*/
+.blog-main {margin: 0 160px 0 70px;}
+.archiveNews{right:40%}
+#khabarjs{width: 38%;}
+.ui-tabs.ui-tabs-vertical .ui-tabs-panel {width: 43em;}
+.imgnews{ height: 190px;width: 100%}                                       
+#emkanat{margin-top: 170px}
+body {font-size: 13px;}
+.content {width: 1400px;}
+body {font-size: 13px;}
+.social {padding: 0;position: absolute;bottom: 0;width: 100%;}
+.social a {margin: 0 3px;}
+#cssmenu ul ul li a {font-size: 14px;}
+#light-bulb {position: relative;width: 228px;height: 220px;background: url(../images/1400/lamp0.png) no-repeat 0 0;z-index: 800;}
+#light-bulb2 {width: 241px;height: 220px;background: transparent url("../images/1400/lamp1.png") no-repeat scroll 0px 0px;}
+.menu nav a {font-size: 14px;}
+.jspPane {width: 1389px !important;}
+.logo {width: 172px;margin: 0 auto;}
+#formcontact .col-5 {width: 28.667%;}
+.formcontact {width: 29%;}
+#cssmenu{height: 540px}
+#my-tooltip4 {bottom: 292px;}
+#my-tooltip5 {position: absolute;right: 353px;text-align: center;top: 20px;}
+#my-tooltip6 {top: -35px;}
+.generaloption{ background: url(/Content/images/bgEmkanat1600.png);background-size: 100% 100%}
+#khabarjs {  bottom: 55px;}
+}
+
+@media (min-width:1700px) {
+.blog-main {margin: 0 115px 0 70px;}
+#emkanat{margin-top: 260px}
+.chaptercontact {background-size: 734px;}
+.imgnews{ height: 230px;width: 100%}
+.generaloption{ background: url(/Content/images/bgEmkanat1900.png);background-size: 100% 100%}
+#khabarjs {bottom: 30px;left: 30px;}
+.content {
+
+    width: 1720px;
+}
+}

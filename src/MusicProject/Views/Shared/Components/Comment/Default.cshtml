@@ -1,0 +1,63 @@
+﻿@model MusicProject.ViewModels.Comment.CommentListViewModel
+
+<div class="album-comment-container">
+
+
+    @if (Model.TotalItems != "0")
+    {
+        <div class="container">
+            <div class="row header-slider">
+                <div class="col-sm-12 d-flex">
+                    <a class="slider-header-title">
+                        نظرات
+                        (@Model.TotalItems)
+                    </a>
+                    <div dir="rtl" id="sortArea" class="mr-auto pt-1">
+                        <select id="pagerSortBy" class="sort-select">
+                            <option value="alphabet">حروف الفبا</option>
+                            <option value="popular">محبوب ترین ها</option>
+                            <option value="date">جدیدترین ها</option>
+                        </select>
+                        <select id="pagerSortOrder" class="d-none">
+                            <option value="desc">نزولي</option>
+                            <option value="asc">صعودي</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="comments-wrapper" id="MoreCommentDiv" style="color: #000">
+                <partial name="_CommentItemsList" model="Model" />
+            </div>
+            <div class="showmore-container">
+                <span id="moreCommentInfoButton" style="width: 90%;" class="btn">
+                    نمایش
+                    بیشتر
+
+                    <i class="fas fa-chevron-down"></i>
+                </span>
+            </div>
+            <div id="ProgressDiv" align="center" style="display:none ">
+                <img src="@Url.Content("~/Content/images/loading.gif")" alt="loading..." />
+            </div>
+        </div>
+    }
+
+    <div class="container">
+
+        <form asp-controller="Album" asp-action="Comment"
+              data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+              data-ajax-failure="onFailed" data-ajax-success="onSuccess"
+              data-ajax="true" data-ajax-method="POST">
+
+            <div class="d-flex  align-items-center">
+                <img src="~/content/images/user-card.jpg" class="comment-img" />
+                <div class="flex-grow-1 comment-input">
+                    <input type="text" style="width: 100%" placeholder="نظر خود را بنویسید..." name="comment" id="comment" />
+                </div>
+                <input type="hidden" value="@Model.Id" name="id" id="id" />
+                <input type="submit" class="btn btn-sendcomment" style="background: url(/content/images/send-icon.jpg)" value="" />
+            </div>
+            <div id="Results"></div>
+        </form>
+    </div>
+</div>

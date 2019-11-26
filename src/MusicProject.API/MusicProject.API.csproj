@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>b8bb6f21-a7ca-4ce0-8296-67330418e5a3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MusicProject.IocConfig\MusicProject.IocConfig.csproj" />
+    <ProjectReference Include="..\MusicProject.Services\MusicProject.Services.csproj" />
+  </ItemGroup>
+
+</Project>

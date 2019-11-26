@@ -1,0 +1,516 @@
+@model PagedContentItemsViewModel
+
+<h2>
+    @{
+        ViewData["Title"] = "مدیریت ";
+    }
+</h2>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>جستجو</strong>
+            </div>
+            <form class="mb-0">
+
+                <input type="hidden" name="type" value="@Context.Request.Query["type"]" />
+                <input type="hidden" name="listid" value="@Context.Request.Query["listid"]" />
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="title">عنوان</label>
+                                <input class="form-control" placeholder="لطفا قسمتی از عنوان را وارد نمایید" type="text" name="title" value="@Context.Request.Query["title"]">
+                            </div>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label for="ccmonth">دسته بندی مورد نظر را انتخاب نمایید</label>
+                            <select asp-for="CategoryId" class="form-control category">
+                                @if (Model.CategoryId == "0")
+                                {
+                                    <option value="0" selected="selected">تمام دسته ها</option>
+                                }
+                                else
+                                {
+                                    <option value="@Model.CategoryId" selected="selected">@ViewBag.CategoryName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label for="ccmonth">هنرمند مورد نظر را انتخاب نمایید</label>
+                            <select asp-for="ArtistId" class="form-control artist">
+                                @if (Model.ArtistId == 0)
+                                {
+                                    <option value="0" selected="selected">تمام هنرمند ها</option>
+                                }
+                                else
+                                {
+                                    <option value="@Model.ArtistId" selected="selected">@ViewBag.ArtistName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label for="ccmonth">سبک مورد نظر را انتخاب نمایید</label>
+                            <select asp-for="StyleId" class="form-control style">
+                                @if (Model.StyleId == 0)
+                                {
+                                    <option value="0" selected="selected">تمام سبک ها</option>
+                                }
+                                else
+                                {
+                                    <option value="@Model.StyleId" selected="selected">@ViewBag.StyleName</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label for="ccmonth">ساز مورد نظر را انتخاب نمایید</label>
+                            <select asp-for="MusicId" class="form-control music">
+                                @if (Model.MusicId == 0)
+                                {
+                                    <option value="0" selected="selected">تمام ساز ها</option>
+                                }
+                                else
+                                {
+                                    <option value="@Model.MusicId" selected="selected">@ViewBag.MusicName</option>
+                                }
+                            </select>
+                        </div>
+
+
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="from">تاریخ انتشار از</label>
+                                <input class="form-control" name="from" placeholder="از تاریخ" type="text" onclick="PersianDatePicker.Show(this, '@ViewBag.CurrentDate');" value="@Context.Request.Query["from"]">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="from">تا تاریخ</label>
+                                <input class="form-control" name="to" placeholder="تا تاریخ" type="text" onclick="PersianDatePicker.Show(this, '@ViewBag.CurrentDate');" value="@Context.Request.Query["to"]">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> جستجو</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+
+                @ViewData["Title"]
+                <span class="label label-info">
+                    @Model.Paging.TotalItems.ToPersianNumbers()
+                </span>
+            </div>
+            <div class="card-body">
+
+                <table class="table table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>دسته بندی</th>
+
+                            <th>تاریخ انتشار</th>
+                            <th>اولویت</th>
+                            <th>انتخاب</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Contents.Any())
+                        {
+
+                            foreach (var item in Model.Contents)
+                            {
+                                <form role="form" class="form-inline" asp-controller="ContentSelected" asp-action="Create">
+
+                                    <tr>
+                                        <td>
+                                            @item.Title
+                                        </td>
+                                        <td>
+                                            @item.Category.Title
+                                        </td>
+                                        <td>
+                                            @item.PublishDateTime.ToLongPersianDateTimeString()
+                                        </td>
+
+                                        <td>
+                                            <input type="text" name="order" value="" />
+
+                                        </td>
+                                        <td>
+                                            <input type="hidden" id="id" name="id" value="@item.Id" />
+                                            <input type="hidden" id="type" name="type" value="@item.TypeId" />
+                                            <input type="hidden" name="listId" value="@Context.Request.Query["listId"]" />
+                                            @if (string.IsNullOrEmpty(Context.Request.Query["pageNumber"]))
+                                            {
+                                                <input type="hidden" name="pageNumber" value="1" />
+                                            }
+                                            else
+                                            {
+                                                <input type="hidden" name="pageNumber" value="@Context.Request.Query["pageNumber"]" />
+
+                                            }
+                                            @if (Model.SelectedContents.Any(p => p.ContentId == item.Id))
+                                            {
+                                                <input type="submit" value='انتخاب' class="btn btn-xs btn-success pull-right" disabled="disabled" />
+
+                                            }
+                                            else
+                                            {
+                                                <input type="submit" value='انتخاب' class="btn btn-xs btn-success pull-right" />
+
+                                            }
+
+                                        </td>
+                                    </tr>
+                                </form>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning">موردی یافت نشد.</div>
+                        }
+
+                    </tbody>
+                </table>
+                <div align="center">
+
+                    <nav aria-label="Page navigation example " class="mt-3 mx-auto text-center">
+                        <cs-pager cs-paging-info="@Model.Paging"
+                                  asp-action="Index" asp-controller="ContentSelected"
+                                  asp-route-type="@Model.Type"
+                                  asp-route-title="@Model.Title"
+                                  asp-route-listId="@Model.ListId"
+                                  asp-route-categoryid="@Model.CategoryId"
+                                  asp-route-artistid="@Model.ArtistId"
+                                  asp-route-styleid="@Model.StyleId"
+                                  asp-route-musicid="@Model.MusicId"
+                                  asp-route-archive="@Model.IsArchive"
+                                  asp-route-pagesize="@Model.Paging.ItemsPerPage"
+                                  cs-show-first-last="true"
+                                  cs-suppress-empty-nextprev="true"
+                                  cs-suppress-inactive-firstlast="true"
+                                  cs-first-page-text="ابتدا"
+                                  cs-last-page-text="انتها"
+                                  cs-pager-li-current-class="page-item active"
+                                  cs-pager-li-other-class="page-item"
+                                  cs-pager-link-current-class="page-link"
+                                  cs-pager-link-other-class="page-link"
+                                  cs-pager-li-non-active-class="page-item disabled">
+
+                        </cs-pager>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-lg-6">
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+
+                لیست انتخاب شده
+                <span class="label label-info">
+
+                </span>
+            </div>
+            <div class="card-body">
+
+                <table class="table table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>دسته بندی</th>
+
+                            <th>اولویت</th>
+                            <th>انتخاب</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SelectedContents != null && Model.SelectedContents.Any())
+
+                        {
+
+                            foreach (var item in Model.SelectedContents)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Content.Title
+                                    </td>
+                                    <td>
+                                        @item.Content.Category.Title
+                                    </td>
+                                    <td>
+
+
+
+                                    <td>
+                                        <form role="form" class="form-inline" asp-controller="ContentSelected" asp-action="Edit">
+
+                                            <input type="text" value="@item.Order" name="order" />
+
+                                            <input type="hidden" id="id" name="id" value="@item.Id" />
+
+                                            <input type="hidden" id="type" name="type" value="@item.Type" />
+
+                                            <input type="hidden" id="from" name="from" value="@Context.Request.Query["from"]" />
+                                            <input type="hidden" id="to" name="to" value="@Context.Request.Query["to"]" />
+                                            <input type="hidden" id="categoryId" name="categoryId" value="@Context.Request.Query["CategoryId"]" />
+
+                                            <input type="hidden" id="title" name="title" value="@Context.Request.Query["title"]" />
+
+
+
+                                            <input type="hidden" name="listId" value="@Context.Request.Query["listId"]" />
+                                            <input type="hidden" name="pageNumber" value="@Context.Request.Query["pageNumber"]" />
+
+
+                                            <input type="submit" value='ویرایش' class="btn btn-xs btn-primary pull-right" />
+                                        </form>
+                                    </td>
+
+                                    <td>
+                                        <form role="form" class="form-inline delForm" asp-controller="ContentSelected" asp-action="Delete">
+                                            <input type="hidden" id="id" name="id" value="@item.Id" />
+
+
+
+                                            <input type="hidden" id="type" name="type" value="@item.Type" />
+                                            <input type="hidden" name="listId" value="@Context.Request.Query["listId"]" />
+                                            <input type="hidden" name="pageNumber" value="@Context.Request.Query["pageNumber"]" />
+
+
+                                            <input type="submit" value='حذف' class="btn btn-xs btn-danger pull-right" />
+                                        </form>
+
+                                    </td>
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning">موردی یافت نشد.</div>
+                        }
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!--/.col-->
+</div>
+
+
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $('.delForm').submit(function () {
+            var status = confirm("آیا برای حذف مطمئن هستید؟");
+            if (status === false) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+    </script>
+
+    <link href="~/content/css/PersianDatePicker.min.css" rel="stylesheet" />
+    <script src="~/content/js/PersianDatePicker.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+
+      $('.category').select2(
+        {
+          placeholder: 'نام آلبوم را وارد نمایید',
+          //Does the user have to enter any data before sending the ajax request
+          minimumInputLength: 0,
+          allowClear: true,
+          ajax: {
+            //How long the user has to pause their typing before sending the next request
+            delay: 150,
+            //The url of the json service
+            url: '@Url.Action("GetStartBy", "Category")',
+            dataType: 'json',
+            async: true,
+            //Our search term and what page we are on
+            data: function (params) {
+              return {
+                pageSize: 20,
+                pageNum: params.page || 1,
+                searchTerm: params.term,
+                //Value from client side.
+                countyId: 'vv'
+              };
+            },
+            processResults: function (data, params) {
+
+              params.page = params.page || 1;
+              return {
+                results: $.map(data.results, function (obj) {
+
+                  return { id: obj.id, text: obj.title };
+                }),
+                pagination: {
+                  more: (params.page * 20) <= data.total
+                }
+              };
+            }
+          }
+            });
+
+        $('.artist').select2(
+        {
+          placeholder: 'نام هنرمند را وارد نمایید',
+          //Does the user have to enter any data before sending the ajax request
+          minimumInputLength: 0,
+          allowClear: true,
+          ajax: {
+            //How long the user has to pause their typing before sending the next request
+            delay: 150,
+            //The url of the json service
+            url: '@Url.Action("GetStartBy", "Tag",new { type="artist"})',
+            dataType: 'json',
+            async: true,
+            //Our search term and what page we are on
+            data: function (params) {
+              return {
+                pageSize: 20,
+                pageNum: params.page || 1,
+                searchTerm: params.term,
+                //Value from client side.
+                countyId: 'vv'
+              };
+            },
+            processResults: function (data, params) {
+
+              params.page = params.page || 1;
+              return {
+                results: $.map(data.results, function (obj) {
+
+                  return { id: obj.id, text: obj.title };
+                }),
+                pagination: {
+                  more: (params.page * 20) <= data.total
+                }
+              };
+            }
+          }
+            });
+
+           $('.style').select2(
+        {
+          placeholder: 'نام سبک را وارد نمایید',
+          //Does the user have to enter any data before sending the ajax request
+          minimumInputLength: 0,
+          allowClear: true,
+          ajax: {
+            //How long the user has to pause their typing before sending the next request
+            delay: 150,
+            //The url of the json service
+            url: '@Url.Action("GetStartBy", "Tag",new { type="style"})',
+            dataType: 'json',
+            async: true,
+            //Our search term and what page we are on
+            data: function (params) {
+              return {
+                pageSize: 20,
+                pageNum: params.page || 1,
+                searchTerm: params.term,
+                //Value from client side.
+                countyId: 'vv'
+              };
+            },
+            processResults: function (data, params) {
+
+              params.page = params.page || 1;
+              return {
+                results: $.map(data.results, function (obj) {
+
+                  return { id: obj.id, text: obj.title };
+                }),
+                pagination: {
+                  more: (params.page * 20) <= data.total
+                }
+              };
+            }
+          }
+            });
+
+
+
+           $('.music').select2(
+        {
+          placeholder: 'نام ساز را وارد نمایید',
+          //Does the user have to enter any data before sending the ajax request
+          minimumInputLength: 0,
+          allowClear: true,
+          ajax: {
+            //How long the user has to pause their typing before sending the next request
+            delay: 150,
+            //The url of the json service
+            url: '@Url.Action("GetStartBy", "Tag",new { type="music"})',
+            dataType: 'json',
+            async: true,
+            //Our search term and what page we are on
+            data: function (params) {
+              return {
+                pageSize: 20,
+                pageNum: params.page || 1,
+                searchTerm: params.term,
+                //Value from client side.
+                countyId: 'vv'
+              };
+            },
+            processResults: function (data, params) {
+
+              params.page = params.page || 1;
+              return {
+                results: $.map(data.results, function (obj) {
+
+                  return { id: obj.id, text: obj.title };
+                }),
+                pagination: {
+                  more: (params.page * 20) <= data.total
+                }
+              };
+            }
+          }
+            });
+
+
+    });
+    </script>
+}

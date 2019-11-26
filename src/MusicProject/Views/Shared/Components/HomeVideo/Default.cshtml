@@ -1,0 +1,316 @@
+﻿@model List<ContentFileViewModel>
+
+<div class="container position-relative">
+    <div class="row header-slider">
+        <div class="col-sm-12">
+            <a class="slider-header-title">
+                موزیک ویدئو ها
+            </a>
+
+            <a class="show-all-slider btn" asp-controller="Video" asp-action="Index"> نمایش همه</a>
+        </div>
+    </div>
+    <a style="" class="slider-left-arrow homeVideoNextBtn">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+    <a style="" class="slider-right-arrow homeVideoPrevBtn">
+        <i class="fas fa-chevron-right"></i>
+    </a>
+    <div class="owl-carousel owl-theme home-video-slider hidden-xs-down">
+        <div class="row">
+            <div class="col-lg-6" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden">
+                @if (Model.Count() > 0)
+                {
+                    <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[0].Id">
+                        <div class="big-video-img"></div> <img src="/content/files/album/@Model[0].Pic" />
+
+                        <span class="big-play">
+                            <i class="fas fa-play" style="color: #fff"></i>
+                        </span>
+                        <div class="video-info">
+                            <h4>
+                                @Model[0].Title
+                            </h4>
+                            <div>
+                                @Model[0].ContentText
+                            </div>
+                        </div>
+
+                    </a>
+                }
+
+
+            </div>
+            <div class="col-lg-6 ">
+                <div class="row vslider-inside">
+                    <div class="col-md-6">
+
+                        @if (Model.Count() > 1)
+                        {
+                            <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[1].Id">
+                                <div class="small-video-img"></div>
+                                <img src="/content/files/album/@Model[1].Thumbnail" />
+
+                                <span class="small-play">
+                                    <i class="fas fa-play" style="color: #fff"></i>
+                                </span>
+                                <div class="video-info-small">
+                                    <h4>
+                                        @Model[1].Title
+                                    </h4>
+                                    <div>
+                                        @Model[1].ContentText
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @if (Model.Count() > 2)
+                        {
+                            <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[2].Id">
+                                <div class="small-video-img"></div>
+
+                                <img src="/content/files/album/@Model[2].Thumbnail" />
+
+                                <span class="small-play">
+                                    <i class="fas fa-play" style="color: #fff"></i>
+                                </span>
+                                <div class="video-info-small">
+                                    <h4>
+                                        @Model[2].Title
+                                    </h4>
+                                    <div>
+                                        @Model[2].ContentText
+                                    </div>
+                                </div>
+
+                            </a>
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @if (Model.Count() > 3)
+                        {
+                            <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[3].Id">
+                                <div class="small-video-img"></div>
+
+                                <img src="/content/files/album/@Model[3].Thumbnail" />
+                                <span class="small-play">
+                                    <i class="fas fa-play" style="color: #fff"></i>
+                                </span>
+                                <div class="video-info-small">
+                                    <h4>
+                                        @Model[3].Title
+                                    </h4>
+                                    <div>
+                                        @Model[3].ContentText
+                                    </div>
+                                </div>
+
+                            </a>
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @if (Model.Count() > 4)
+                        {
+                            <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[4].Id">
+                                <div class="small-video-img"></div>
+
+                                <img src="/content/files/album/@Model[4].Thumbnail" />
+                                <span class="small-play">
+                                    <i class="fas fa-play" style="color: #fff"></i>
+                                </span>
+                                <div class="video-info-small">
+                                    <h4>
+                                        @Model[4].Title
+                                    </h4>
+                                    <div>
+                                        @Model[4].ContentText
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="big-video-img"></div>
+                @if (Model.Count() > 5)
+                {
+                    <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[5].Id">
+                        <div class="small-video-img"></div>
+
+                        <img src="/content/files/album/@Model[5].Pic" />
+                        <span class="big-play">
+                            <i class="fas fa-play" style="color: #fff"></i>
+                        </span>
+                        <div class="video-info">
+                            <h4>
+                                @Model[5].Title
+                            </h4>
+                            <div>
+                                @Model[5].ContentText
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+            <div class="col-lg-6 ">
+                <div class="row vslider-inside">
+                    <div class="col-lg-6">
+                        @if (Model.Count() > 6)
+                        {
+                            <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[6].Id">
+                                <div class="small-video-img"></div>
+
+                                <img src="/content/files/album/@Model[6].Thumbnail" />
+
+                                <span class="small-play">
+                                    <i class="fas fa-play" style="color: #fff"></i>
+                                </span>
+                                <div class="video-info-small">
+                                    <h4>
+                                        @Model[6].Title
+                                    </h4>
+                                    <div>
+                                        @Model[6].ContentText
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @if (Model.Count() >7)
+                        {
+                            <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[7].Id">
+                                <div class="small-video-img"></div>
+
+                                <img src="/content/files/album/@Model[7].Thumbnail" />
+
+                                <span class="small-play">
+                                    <i class="fas fa-play" style="color: #fff"></i>
+                                </span>
+                                <div class="video-info-small">
+                                    <h4>
+                                        @Model[7].Title
+                                    </h4>
+                                    <div>
+                                        @Model[7].ContentText
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @if (Model.Count() > 8)
+                        {
+                            <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[8].Id">
+                                <div class="small-video-img"></div>
+
+                                <img src="/content/files/album/@Model[8].Thumbnail" />
+
+                                <span class="small-play">
+                                    <i class="fas fa-play" style="color: #fff"></i>
+                                </span>
+                                <div class="video-info-small">
+                                    <h4>
+                                        @Model[8].Title
+                                    </h4>
+                                    <div>
+                                        @Model[8].ContentText
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                    <div class="col-lg-6">
+                        @if (Model.Count() > 9)
+                        {
+                            <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[9].Id">
+                                <div class="small-video-img"></div>
+
+                                <img src="/content/files/album/@Model[9].Thumbnail" />
+                                <span class="small-play">
+                                    <i class="fas fa-play" style="color: #fff"></i>
+                                </span>
+                                <div class="video-info-small">
+                                    <h4>
+                                        @Model[9].Title
+                                    </h4>
+                                    <div>
+                                        @Model[9].ContentText
+                                    </div>
+                                </div>
+
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <div class="row d-block d-sm-none">
+        <div class="col-12">
+            @if (Model.Count() > 0)
+            {
+                <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[0].Id">
+                    <div class="mobile-video-img"></div> <img src="/content/files/album/@Model[0].Thumbnail" class="home-slider-img" />
+                    <span class="big-play">
+                        <i class="fas fa-play" style="color: #fff"></i>
+                    </span>
+                    <div class="video-info">
+                        <h4>
+                            @Model[0].Title
+                        </h4>
+                        <div>
+                            @Model[0].ContentText
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+
+        <div class="col-12">
+
+
+            <a style="" class="slider-left-arrow homemobileVideoNextBtn">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <a style="" class="slider-right-arrow homemobileVideoPrevBtn">
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            <div class="owl-carousel owl-theme home-mobile-video-slider d-block d-sm-none">
+
+                @for (int i = 1; i < Model.Count; i++)
+                {
+                    <a asp-controller="Video" asp-action="Detail" asp-route-id="@Model[i].Id">
+                        <div class="small-video-img"></div>
+                        <img src="/content/files/album/@Model[i].Thumbnail" />
+                        <span class="small-play">
+                            <i class="fas fa-play" style="color: #fff"></i>
+                        </span>
+                        <div class="video-info-small">
+                            <h4>
+                                @Model[i].Title
+                            </h4>
+                            <div>
+                                @Model[i].ContentText
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+
+        </div>
+</div>
+
+</div>

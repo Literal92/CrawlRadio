@@ -1,0 +1,136 @@
+
+@model AppSettingViewModel
+
+@{
+  ViewData["Title"] = "ویرایش تنظیمات اپ";
+
+  if (Model.TypeId.ToString() == "1")
+  {
+    ViewData["Title"] = "ویرایش اسلایدر اپلیکیشن";
+
+  }
+  if (Model.TypeId.ToString() == "2")
+  {
+    ViewData["Title"] = "ویرایش اسلایدر سایت ";
+  }
+}
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+
+      <form asp-controller="AppSetting"
+            asp-action="Edit"
+            method="post"
+            enctype="multipart/form-data"
+            class="form-horizontal">
+        <div class="card-header">
+          <strong>
+
+            @ViewData["Title"]
+          </strong>
+
+        </div>
+        <div class="card-body">
+
+          <partial name="_CustomValidationSummary" />
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="CafebazarLink"></label>
+            <div class="col-md-10">
+              <input asp-for="CafebazarLink" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="CafebazarLink" class="text-danger"></span>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="Instagram"></label>
+            <div class="col-md-10">
+              <input asp-for="Instagram" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Instagram" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="Site"></label>
+            <div class="col-md-10">
+              <input asp-for="Site" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Site" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="Soundcloud"></label>
+            <div class="col-md-10">
+              <input asp-for="Soundcloud" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Soundcloud" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="Telegram"></label>
+            <div class="col-md-10">
+              <input asp-for="Telegram" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Telegram" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="ChangeLog"></label>
+            <div class="col-md-10">
+              <textarea asp-for="ChangeLog" class="editor"></textarea>
+              <span asp-validation-for="ChangeLog" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="AboutUs"></label>
+            <div class="col-md-10">
+              <textarea asp-for="AboutUs" class="editor"></textarea>
+              <span asp-validation-for="AboutUs" class="text-danger"></span>
+            </div>
+          </div>
+          <input type="hidden" asp-for="Id" />
+          <input type="hidden" asp-for="TypeId" />
+
+    
+
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> ارسال</button>
+          <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> بازنشانی</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <!--/.col-->
+</div>
+
+@section Scripts
+{
+  <script src="~/content/plugin/tinymce/tinymce.min.js"></script>
+  <script>
+  tinymce.init({
+    selector: '.editor',
+
+    plugins: [
+      "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+      "searchreplace wordcount visualblocks visualchars code fullscreen",
+      "insertdatetime media nonbreaking save table contextmenu directionality",
+      "emoticons template paste textcolor colorpicker textpattern imagetools"
+    ],
+    paste_data_images: true,
+    images_upload_url: '/admin/content/UploadImage',
+    images_upload_base_path: '',
+    height: "280",
+    directionality: 'rtl',
+    language: 'fa_IR'
+    });
+  </script>
+  
+
+}

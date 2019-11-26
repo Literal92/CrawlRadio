@@ -1,0 +1,230 @@
+/* CSS Document */
+@font-face {
+    font-family: 'AeroliteCPone';
+    src: url('../fonts/aerolite_cp_one.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/aerolite_cp_one.otf') format('opentype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'AngryBirds';
+    src: url('../fonts/angrybirds.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'BeBas Neue';
+    src: url('../fonts/bebas_neue.otf') format('opentype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Bloody';
+    src: url('../fonts/bloody.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/bloody.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'BodoniXT';
+    src: url('../fonts/bodoni_xt.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/bodoni_xt.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Cardinal';
+    src: url('../fonts/cardinal.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Champignon';
+    src: url('../fonts/champignon.otf') format('opentype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'ChopinScript';
+    src: url('../fonts/chopin_script.otf') format('opentype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Code Bold';
+    src: url('../fonts/code_bold.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/code_bold.otf') format('opentype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Comfortaa';
+    src: url('../fonts/comfortaa-regular.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/comfortaa-regular.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Average Sans';
+    src: url('../fonts/averagesans-regular.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Double Feature';
+    src: url('../fonts/double_feature20.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'EmbossedGermanica';
+    src: url('../fonts/embossed_germanica.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Expansiva';
+    src: url('../fonts/expansiva.otf') format('opentype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'FlutedGermanica';
+    src: url('../fonts/fluted_germanica.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Gabrielle';
+    src: url('../fonts/gabrielle.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Kimberley Bl';
+    src: url('../fonts/kimberley_bl.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/kimberley_bl.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Marcellus';
+    src: url('../fonts/marcellus_regular.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Morris Roman';
+    src: url('../fonts/morris_roman_black.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Neuton';
+    src: url('../fonts/neuton.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+
+@font-face {
+    font-family: 'Old London';
+    src: url('../fonts/old_london.ttf') format('truetype'); 
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'PlainGermanica';
+    src: url('../fonts/plain_germanica.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Playball';
+    src: url('../fonts/playball.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Poetsen One';
+    src: url('../fonts/poetsen_one_regular.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Roboto Bk';
+    src: url('../fonts/roboto_black.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/roboto_black.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Ruritania';
+    src: url('../fonts/ruritania.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'ShadowedBlack Normal';
+    src: url('../fonts/shadowed_black.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'ShadowedGermanica';
+    src: url('../fonts/shadowed_germanica.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Spy Agency';
+    src: url('../fonts/spyagency.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Steelfish Rg';
+    src: url('../fonts/steelfish_rg.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/steelfish_rg.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Tall Dark And Handsome';
+    src: url('../fonts/talldark.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'TeXGyreAdventor';
+    src: url('../fonts/texgyreadventor-regular.eot@#iefix') format('embedded-opentype'),
+		 url('../fonts/texgyreadventor-regular.otf')format('opentype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Trajan Pro';
+    src: url('../fonts/trajan_pro.otf') format('opentype');
+	font-weight:normal;
+	font-style:normal;
+}
+@font-face {
+    font-family: 'Trajan Bold';
+    src: url('../fonts/trajan_bold.ttf') format('truetype');
+	font-weight:normal;
+	font-style:normal;
+}

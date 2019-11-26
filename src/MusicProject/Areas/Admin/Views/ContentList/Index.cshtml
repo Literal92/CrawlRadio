@@ -1,0 +1,193 @@
+@model PagedContentListViewModel
+<h2>
+    @{
+        ViewData["Title"] = "مدیریت ";
+    }
+</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>جستجو</strong>
+            </div>
+            <form class="mb-0">
+
+                <input type="hidden" name="type" value="@Context.Request.Query["type"]" />
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="title">عنوان</label>
+                                <input class="form-control" placeholder="لطفا قسمتی از عنوان را وارد نمایید" type="text" name="title" value="@Context.Request.Query["title"]">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> جستجو</button>
+                </div>
+
+            </form>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+
+                @ViewData["Title"]
+                <span class="label label-info">
+                    @Model.Paging.TotalItems.ToPersianNumbers()
+                </span>
+            </div>
+            <div class="card-body">
+
+                <table class="table table-striped">
+
+                    <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>
+                                اضافه کردن آهنگ
+                            </th>
+                            <th>
+                                بارگذاری آهنگ
+                            </th>
+                            <th>
+                                آهنگهای بارگذاری شده
+                            </th>
+
+                            <th>ارسال نوتیف</th>
+                            <th>ویرایش</th>
+                            <th>حذف</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.ContentLIstItem.Any())
+                        {
+
+                            foreach (var item in Model.ContentLIstItem)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Title
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" asp-controller="ContentSelected" asp-action="Index" asp-route-listid="@item.Id" asp-route-type="@item.Type">
+                                            <i class="fa fa-plus-square"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" asp-controller="ContentListFile" asp-action="Create" asp-route-id="@item.Id" asp-route-type="1">
+                                            <i class="fa fa-edit "></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" asp-controller="ContentListFile" asp-action="Index" asp-route-contentlistid="@item.Id">
+                                            <i class="fa fa-edit "></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" data-toggle="modal" data-target="#exampleModalLong">
+                                            <i class="fa fa-bell-o "></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info" asp-controller="ContentList" asp-action="Edit" asp-route-id="@item.Id" asp-route-type="1">
+                                            <i class="fa fa-edit "></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <form role="form" class="form-inline delForm" asp-controller="ContentList" asp-action="Delete">
+                                            <input type="hidden" id="id" name="id" value="@item.Id" />
+                                            <input type="hidden" id="type" name="type" value="@item.Type" />
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-trash-o "></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning">موردی یافت نشد.</div>
+                        }
+
+                    </tbody>
+                </table>
+                <div align="center">
+
+                    <nav aria-label="Page navigation example " class="mt-3 mx-auto text-center">
+                        <cs-pager cs-paging-info="@Model.Paging"
+                                  asp-action="Index" asp-controller="ContentList"
+                                  asp-route-type="@Model.Type"
+                                  asp-route-title="@Model.Title"
+                                  asp-route-pagesize="@Model.Paging.ItemsPerPage"
+                                  cs-show-first-last="true"
+                                  cs-suppress-empty-nextprev="true"
+                                  cs-suppress-inactive-firstlast="true"
+                                  cs-first-page-text="ابتدا"
+                                  cs-last-page-text="انتها"
+                                  cs-pager-li-current-class="page-item active"
+                                  cs-pager-li-other-class="page-item"
+                                  cs-pager-link-current-class="page-link"
+                                  cs-pager-link-other-class="page-link"
+                                  cs-pager-li-non-active-class="page-item disabled">
+
+                        </cs-pager>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <!--/.col-->
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span >&times;</span>
+                   
+                </button>
+            </div>
+            <form asp-controller="ContentList" asp-action="SendNotification" method="post" role="form">
+                <div class="modal-body">
+                    <input type="text" placeholder=" متن مورد نظر را بنویسید..." style="width:100%" id="msg" name="msg" />
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-secondary" value="ارسال" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $('.delForm').submit(function () {
+            var status = confirm("آیا برای حذف مطمئن هستید؟");
+            if (status === false) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+    </script>
+
+}

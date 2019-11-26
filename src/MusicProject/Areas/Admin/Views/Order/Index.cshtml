@@ -1,0 +1,216 @@
+@model PagedOrderViewModel
+@inject IUnitOfWork Uow
+@{
+
+  ViewData["Title"] = "مدیریت سفارشات";
+
+}
+
+<div class="row">
+
+
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i>
+
+        @ViewData["Title"]
+        <span class="label label-info">
+          @Model.Paging.TotalItems.ToPersianNumbers()
+        </span>
+
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                موضوع
+              </th>
+              <th>
+                نام
+              </th>
+
+              <th>
+                تلفن
+              </th>
+              <th>
+                ایمیل
+              </th>
+
+              <th>
+                بودجه
+              </th>
+              <th>
+                زمان
+              </th>
+              <th>
+                سطح پروژه
+              </th>
+              <th>
+                نوع پروژه
+              </th>    <th>
+              تاریخ
+              </th>
+
+
+
+              <th>حذف</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (Model.OrderItem.Any())
+            {
+
+              foreach (var item in Model.OrderItem)
+              {
+            <tr>
+              <td>
+                @item.Subject
+              </td>
+              <td>
+                @item.Name
+              </td>
+              <td class="text-center">
+                @item.Mobile
+              </td>
+              <td>
+                @item.Email
+              </td>
+
+
+              <td>
+                @item.Budget
+              </td>
+
+
+
+              <td>
+                @item.ProjectDuration
+              </td>
+              <td>
+                @item.Level
+              </td>
+              <td>
+                @item.OrderType
+              </td>
+
+              <td>
+             @Convert.ToDateTime(Uow.GetShadowPropertyValue(item, AuditableShadowProperties.CreatedDateTime).ToString()).ToShortPersianDateTimeString()
+              </td>
+
+
+
+
+
+              <td>
+                <form role="form" class="form-inline delForm" asp-controller="Order" asp-action="Delete">
+                  <input type="hidden" id="id" name="id" value="@item.Id" />
+
+                  <input type="submit" value='حذف' class="btn btn-xs btn-danger pull-right" />
+                </form>
+              </td>
+            </tr>
+                <tr>
+                  <td colspan="20">
+                    @if (item.Subject == "انیمیشن")
+                    {
+                    <div>
+                      @if (item.HasSenario == "hassenario")
+                      {
+                        <a href="/content/files/order/@item.File">
+                          دانلود سناریو
+                        </a>
+                      }
+
+
+
+                    </div>
+
+                      }
+
+                      @if (item.Subject == "تولیدات صوتی")
+                      {
+                        <div>
+                          گویندگان:      @item.Speecher
+
+                        </div>
+
+                        <div>
+                          سناریو: @item.Senario
+
+                        </div>
+                      }
+                      @if (item.Subject == "عکاسی")
+                      {
+                        <div>
+                          تعداد فریم:      @item.Count
+
+                        </div>
+
+                        <div>
+                          @item.HasEdit
+
+                        </div>
+                      }
+                      @if (item.Subject == "گرافیک")
+                      {
+                        <div>
+                          تعداد فریم:      @item.Count
+
+                        </div>
+
+                        <div>
+                          مدت زمان:     @item.Time
+
+                        </div>
+                      }
+                    </td>
+                  </tr>
+                  @*<tr>
+
+                    </tr>*@
+                }
+                    }
+                    else
+                    {
+                    <div class="alert alert-warning">موردی یافت نشد.</div>
+                    }
+
+                  </tbody>
+                </table>
+                <div align="center">
+                  <cs-pager cs-paging-info="@Model.Paging"
+                            asp-action="Index" asp-controller="Order"
+                            asp-route-pagesize="@Model.Paging.ItemsPerPage"
+                            cs-show-first-last="true"
+                            cs-suppress-empty-nextprev="true"
+                            cs-suppress-inactive-firstlast="true"
+                            cs-first-page-text="ابتدا"
+                            cs-last-page-text="انتها"
+                            cs-pager-li-current-class="page-item active"
+                            cs-pager-li-non-active-class="disabled"></cs-pager>
+                </div>
+
+          </div>
+    </div>
+  </div>
+  <!--/.col-->
+</div>
+
+
+
+@section Scripts
+  {
+  <script type="text/javascript">
+    $('.delForm').submit(function () {
+      var status = confirm("آیا برای حذف مطمئن هستید؟");
+      if (status === false) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+  </script>
+}

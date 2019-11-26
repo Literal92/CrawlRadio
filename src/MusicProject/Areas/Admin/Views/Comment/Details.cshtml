@@ -1,0 +1,126 @@
+﻿@model MusicProject.ViewModels.Comment.CommentListViewModel
+
+@{
+    ViewData["Title"] = "لیست نظرات ";
+    var Comment = Model.Comment;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-light">
+                <span>اطلاعات نظر "@Model.UserName"</span>
+                <a href="/Admin/Comment/Index" style="font-size:13px;" class="float-left"><i class="fa fa-arrow-circle-left"></i>   بازگشت به لیست نظرات</a>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label class="form-control">ایمیل : @Comment.Email</label>
+                        <label class="form-control">شماره تماس : @Comment.Tell</label>
+                        <label class="form-control">
+                            وضعیت :
+                            <span class="switch">
+                                <input type="checkbox" name="checkComment_@Comment.Id" id="checkComment_@Comment.Id" data-id="@Comment.Id" class="checkbox" checked="@Comment.IsPublished" />
+                                <span class="slider"></span>
+                            </span>
+                        </label>
+                        <label class="form-control">زمان ایجاد : @Comment.CreatedDateTime.ToPersianDateTextify()</label>
+                        <label class="form-control">
+                            عنوان بخش :
+                            @switch (Comment.TypeId)
+                            {
+                                case 1:<a href="/album/detail/@Model.TypeId">@Model.TypeName</a>
+                                break;
+                            case 2:
+                                <a href="/playlist/detail/@Model.TypeId">@Model.TypeName</a>
+                                break;
+                            default: <label>@Comment.TypeId</label>
+                            break;
+                    }
+                        </label>
+                        <label class="form-control">پسندیده : @Comment.Like ، نپسندیده : @Comment.Dislike</label>
+                        <label class="form-control form-">متن نظر : @Comment.Body</label>
+                        @if (Comment.InverseParent != null && Comment.ParentId == null)
+                        {
+                            <label>پاسخ ها : </label>
+                            <label class="form-control">
+                                @foreach (var item in Comment.InverseParent)
+                                {
+                                    <label>@item.Name :</label><span> @item.Body</span><br />
+                                }
+                            </label>
+                        }
+                        @if (Comment.Parent == null)
+                        {
+                            <a role="button" class=" btn btn-primary" data-target="#ReplyComment" data-toggle="collapse">پاسخ به نظر <i class="fa fa-reply"></i></a>
+                            <div class="collapse" id="ReplyComment" style="margin-top:10px">
+                                <form asp-controller="Comment" asp-action="AddReplyCommentAsync"
+                                      data-ajax-begin="onBegin" data-ajax-complete="onComplete"
+                                      data-ajax-failure="onFailed" data-ajax-success="onSuccess"
+                                      data-ajax="true" data-ajax-method="POST">
+
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <input cols="40" rows="5" type="text" style="width: 100%" placeholder="نظر خود را بنویسید..." name="comment" id="comment" value="" />
+                                        </div>
+                                        <input type="hidden" value="@Comment.Id" name="id" id="id" />
+                                        <input type="hidden" value="@Comment.TypeId" name="type" id="type" />
+                                        <div class="col-md-2">
+                                            <button type="submit" style="height:30px" class="btn btn-success">ارسال نظر</button>
+                                        </div>
+                                    </div>
+                                    <div id="Results"></div>
+                                </form>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        var id;
+        var state;
+        $("input[id^='checkComment_']").on("change", function () {
+
+            id = $(this).data("id")
+            state = $(this).is(':checked') ? true : false;
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("UpdatePusblished", "Comment")',
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    state == true ? alert("در سایت منتشر گردید.") : alert("پیش نویس گردید.");
+                },
+                data: JSON.stringify({
+                    id: id,
+                    State: state
+
+                }),
+
+            });
+        });
+        var results = $("#Results");
+        var onBegin = function () {
+            results.html("<img src=\"/content/images/loading.gif\" alt=\"Loading\" />");
+            $("#comment").val("");
+        };
+
+        var onComplete = function () {
+            results.html("");
+            location.reload();
+        };
+
+        var onSuccess = function (context) {
+            alert("نظر با موفقیت ارسال گردید.")
+        };
+
+        var onFailed = function (context) {
+            alert("Failed");
+        };
+    </script>
+}

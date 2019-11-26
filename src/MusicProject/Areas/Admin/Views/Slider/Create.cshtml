@@ -1,0 +1,95 @@
+
+@model SliderViewModel
+@inject IUsersPhotoService PhotoService
+@inject IOptionsSnapshot<SiteSettings> SiteOptions
+@{
+  ViewData["Title"] = "ثبت اسلایدر";
+
+  if (Context.Request.Query["type"].ToString() == "1")
+  {
+    ViewData["Title"] = "ثبت اسلایدر اپلیکیشن";
+
+  }
+  if (Context.Request.Query["type"].ToString() == "2")
+  {
+    ViewData["Title"] = "ثبت اسلایدر سایت";
+  }
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <form asp-controller="Slider"
+            asp-action="Create"
+            method="post"
+            enctype="multipart/form-data"
+            class="form-horizontal">
+        <div class="card-header">
+          <strong>
+            @ViewData["Title"]
+          </strong>
+        </div>
+        <div class="card-body">
+          <partial name="_CustomValidationSummary" />
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="Title"></label>
+            <div class="col-md-10">
+              <input asp-for="Title" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="SubTitle"></label>
+            <div class="col-md-10">
+              <input asp-for="SubTitle" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="SubTitle" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="State"></label>
+            <div class="col-md-10">
+              <select asp-for="State" class="form-control">
+                <option value="enable" selected="selected">فعال</option>
+                <option value="diable" >غیر فعال</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="Link"></label>
+            <div class="col-md-10">
+              <input asp-for="Link" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Link" class="text-danger"></span>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label asp-for="PhotoFileName" class="col-md-2 control-label"></label>
+            <div class="controls col col-md-10">
+              <img src="" asp-append-version="true" />
+              <input type="file" asp-for="Photo" class="form-control" />
+              <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <input type="hidden" asp-for="TypeId" value="@Context.Request.Query["type"]" />
+
+          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> ارسال</button>
+          <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> بازنشانی</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--/.col-->
+</div>
+
+@section Scripts
+  {
+
+}

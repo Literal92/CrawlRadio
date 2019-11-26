@@ -1,0 +1,29 @@
+﻿<ul class="nav navbar-nav">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        لیست
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <security-trimming asp-area="Admin" asp-controller="Content" asp-action="Create">
+                <li>
+                    <a asp-controller="Content" asp-action="Create" asp-area="Admin" asp-route-type="2" >
+                        <span class="left5 fa fa-user" aria-hidden="true"></span>
+                    ثبت 
+                    </a>
+                </li>
+            </security-trimming>
+
+            <security-trimming asp-area="Admin" asp-controller="Content" asp-action="Index">
+                <li>
+                    <a asp-controller="Content" asp-action="Index" asp-area="Admin" asp-route-type="2">
+                        <span class="left5 fa fa-cog" aria-hidden="true"></span>
+                       لیست 
+                    </a>
+                </li>
+            </security-trimming>
+
+
+        </ul>
+    </li>
+</ul>

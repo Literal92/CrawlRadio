@@ -1,0 +1,639 @@
+@using MusicProject.Common
+@model CategoryViewModel
+@inject IUsersPhotoService PhotoService
+@inject IOptionsSnapshot<SiteSettings> SiteOptions
+@{
+  ViewData["Title"] = ViewBag.BreadCrump;
+
+
+
+}
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+
+      <form asp-controller="Category"
+            asp-action="Edit"
+            method="post"
+            enctype="multipart/form-data"
+            class="form-horizontal">
+        <div class="card-header">
+          <strong>
+
+            @ViewData["Title"]
+          </strong>
+
+        </div>
+        <div class="card-body">
+
+
+
+          <partial name="_CustomValidationSummary" />
+
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" asp-for="Title"></label>
+            <div class="col-md-9">
+              <input asp-for="Title" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" asp-for="IsPublic">انتشار</label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check checkbox">
+                <input asp-for="IsPublic" class="form-check-input" type="checkbox">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" asp-for="IsSelected">منتخب</label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check checkbox">
+                <input asp-for="IsSelected" class="form-check-input" type="checkbox">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" asp-for="SendNotification"></label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check checkbox">
+                <input asp-for="SendNotification" class="form-check-input" type="checkbox" >
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label asp-for="PhotoFileName" class="col-md-3 control-label"></label>
+            <div class="controls col col-md-9">
+              <img src="~/content/files/album/@Model.Pic"
+                   asp-append-version="true" alt="photo" />
+              <input type="file" asp-for="Photo" class="form-control" />
+              <span asp-validation-for="Photo" class="text-danger"></span>
+              <input type="hidden" asp-for="Id" />
+              <input type="hidden" asp-for="TypeId" />
+              <input type="hidden" asp-for="Pic" />
+              <input type="hidden" asp-for="Thumbnail" />
+              <input type="hidden" asp-for="Description" />
+              <input type="hidden" name="tagId" id="tagId" value="@Context.Request.Query["tagId"].ToString()" />
+              <input type="hidden" name="pageNumber" id="pageNumber" value="@Context.Request.Query["pageNumber"].ToString()" />
+
+
+
+            </div>
+
+          </div>
+          <div class="form-group row ">
+            <label class="col-md-3 control-label">
+              تاریخ انتشار
+            </label>
+            <div class="col-md-9">
+
+              <input type="text" asp-for="RegisterDate" onclick="PersianDatePicker.Show(this, '@ViewBag.CurrentDate');" class="form-control" />
+
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" asp-for="Description"></label>
+            <div class="col-md-9">
+              <input asp-for="Description" class="form-control" placeholder="" type="text" disabled="">
+              <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group row ">
+            <label class="col-md-3 control-label">
+              ساعت انتشار
+            </label>
+            <div class="col-md-9">
+
+              <div class="input-group bootstrap-timepicker timepicker">
+                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+
+                <input type="text" class="form-control timePicker" asp-for="RegisterTime">
+              </div>
+
+            </div>
+          </div>
+          <div class="form-group row d-none">
+            <label class="col-md-3 control-label">
+              دسته بندی
+            </label>
+            <div class="col-md-9">
+
+              <div id="jstree_demo_div"></div>
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 form-control-label" asp-for="SeoDescription"></label>
+            <div class="col-md-9">
+              <input asp-for="SeoDescription" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="SeoDescription" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row ">
+            <label class="col-md-3 control-label">
+
+              تگ ها
+            </label>
+            <div class="col-md-9">
+
+              <input id="tags" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="ta" class="list-unstyled">
+                  @{
+                    var tags = Model.CategoryTags.Where(p => p.Type == "tag").ToList();
+                  }
+                  @if (tags.Any())
+                  {
+
+                    foreach (var i in tags)
+                    {
+
+                      <li data-id='@i.TagId'>
+                        @i.Tag.Title
+                        <i class="fa fa-times removeTag" style='margin-right: 30px' data-id='@i.TagId'></i>
+                      </li>
+                    }
+
+                  }
+
+
+                </ul>
+              </div>
+              @Html.HiddenFor(model => model.Tags)
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 control-label">
+              هنرمندان
+            </label>
+            <div class="col-md-9">
+
+              <input id="iArtist" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="artistUl" class="list-unstyled">
+                  @{
+                    var artist = Model.CategoryTags.Where(p => p.Type == "artist").ToList();
+                  }
+                  @if (artist.Any())
+                  {
+                    foreach (var i in artist)
+                    {
+                      <li data-id='@i.TagId'>
+                        @i.Tag.Title
+                        <i class="fa fa-times removeTagArtist" style='margin-right: 30px' data-id='@i.TagId'></i>
+                      </li>
+                    }
+                  }
+                </ul>
+                @Html.HiddenFor(model => model.Artists)
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-md-3 control-label">
+              سبک
+            </label>
+            <div class="col-md-9">
+
+              <input id="iStyle" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="styleUl" class="list-unstyled">
+
+                  @{
+                    var style = Model.CategoryTags.Where(p => p.Type == "style").ToList();
+                  }
+                  @if (style.Any())
+                  {
+                    foreach (var i in style)
+                    {
+                      <li data-id='@i.TagId'>
+                        @i.Tag.Title
+                        <i class="fa fa-times removeTagStyle" style='margin-right: 30px' data-id='@i.TagId'></i>
+                      </li>
+                    }
+                  }
+
+
+                </ul>
+                @Html.HiddenFor(model => model.Styles)
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-3 control-label">
+              ساز
+            </label>
+            <div class="col-md-9">
+
+              <input id="iMusic" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="musicUl" class="list-unstyled">
+
+
+                  @{
+                    var music = Model.CategoryTags.Where(p => p.Type == "music").ToList();
+                  }
+                  @if (music.Any())
+                  {
+                    foreach (var i in music)
+                    {
+                      <li data-id='@i.TagId'>
+                        @i.Tag.Title
+                        <i class="fa fa-times removeTagMusic" style='margin-right: 30px' data-id='@i.TagId'></i>
+                      </li>
+                    }
+                  }
+
+
+                </ul>
+                @Html.HiddenFor(model => model.Musics)
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <label asp-for="ZipMp364Name" class="col-md-3 control-label"></label>
+            <div class="controls col col-md-9">
+              <input type="file" asp-for="ZipMp364" class="form-control" />
+              <span asp-validation-for="ZipMp364" class="text-danger"></span>
+              @if (Model.ZipMp364Src != null)
+              {
+                <a href="/content/files/album/@Model.ZipMp364Src">
+                  دانلود
+                </a>
+              }
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label asp-for="ZipMp3128Name" class="col-md-3 control-label"></label>
+            <div class="controls col col-md-9">
+              <input type="file" asp-for="ZipMp3128" class="form-control" />
+              <span asp-validation-for="ZipMp3128" class="text-danger"></span>
+              @if (Model.ZipMp3128Src != null)
+              {
+                <a href="/content/files/album/@Model.ZipMp3128Src">
+                  دانلود
+                </a>
+              }
+
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label asp-for="ZipMp3320Name" class="col-md-3 control-label"></label>
+            <div class="controls col col-md-9">
+              <input type="file" asp-for="ZipMp3320" class="form-control" />
+              <span asp-validation-for="ZipMp3320" class="text-danger"></span>
+              @if (Model.ZipMp3320Src != null)
+              {
+                <a href="/content/files/album/@Model.ZipMp3320Src">
+                  دانلود
+                </a>
+              }
+            </div>
+          </div>
+
+
+
+          <div class="form-group row">
+            <label class="col-md-3 control-label">متن</label>
+
+            <div class="col col-md-9">
+
+              <textarea asp-for="ContentText" class="editor"></textarea>
+
+
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+        <div class="card-footer">
+
+          <input type="hidden" asp-for="ParentId" />
+
+          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> ارسال</button>
+          <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> بازنشانی</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <!--/.col-->
+</div>
+
+
+@section Scripts
+  {
+
+  <script src="~/content/plugin/tinymce/tinymce.min.js"></script>
+
+  <script>
+    tinymce.init({
+      selector: '.editor',
+
+      plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+      ],
+      paste_data_images: true,
+      images_upload_url: '/admin/content/UploadImage',
+      images_upload_base_path: '',
+      height: "280",
+      directionality: 'rtl',
+      language: 'fa_IR'
+    });</script>
+  <link href="~/content/css/PersianDatePicker.min.css" rel="stylesheet" />
+  <script src="~/content/js/PersianDatePicker.min.js"></script>
+  <script src="~/content/js/bootstrap-timepicker.min.js"></script>
+
+  <link href="~/content/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+  <script type="text/javascript">
+    $('.timePicker').timepicker();
+  </script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+  <script>
+    $(function () {
+
+      @*$('#jstree_demo_div').jstree({ //this comment for tree
+        'core': {
+          "multiple" : false,
+          'data':@Html.Raw(Model.Cats)
+        }
+      });
+
+      $('#jstree_demo_div').on("changed.jstree", function (e, data) {
+        if (data.selected != "j1_1") {
+          $("#ParentId").val(data.selected);
+        } else {
+          $("#ParentId").val(null);
+
+        }
+      });*@
+
+
+
+      var tagss = [];
+      var vartists = [];
+      var vmusics = [];
+      var vstyles = [];
+
+      tagss = '@Model.Tags'.split(",");
+      vartists = '@Model.Artists'.split(",");
+      vmusics = '@Model.Musics'.split(",");
+      vstyles= '@Model.Styles'.split(",");
+
+
+
+
+      function split( val ) {
+        return val.split( /,\s*/ );
+      }
+      function extractLast( term ) {
+        return split( term ).pop();
+      }
+
+
+      $('body').on('click', '.removeTag', function() {
+
+        var index = tagss.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          tagss.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(tagss);
+        document.getElementById('Tags').value = tagss;
+      });
+
+      $('body').on('click', '.removeTagArtist', function() {
+
+        var index = vartists.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          vartists.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(vartists);
+        document.getElementById('Artists').value = vartists;
+      });
+
+
+      $('body').on('click', '.removeTagStyle', function() {
+
+        var index = vstyles.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          vstyles.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(vstyles);
+        document.getElementById('Styles').value = vstyles;
+      });
+
+      $('body').on('click', '.removeTagMusic', function () {
+
+        var index = vmusics.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          vmusics.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(vmusics);
+        document.getElementById('Musics').value = vmusics;
+      });
+
+
+
+        $( "#tags" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag", new {type="tag"} )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+
+            return false;
+          },
+          select: function (event, ui) {
+            $("#ta").append("<li data-id=" + $.trim( ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTag\" style='margin-right:30px'  data-id=" +
+              $.trim(
+              ui.item.id) + "></i>"
+              + "</li>");
+            tagss.push(
+              $.trim(
+              ui.item.id
+                )
+            );
+            console.log(tagss);
+            this.value = "";
+            document.getElementById('Tags').value = tagss;
+            return false;
+          }
+        });
+
+
+
+
+
+      $( "#iArtist" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag", new {type="artist"} )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+
+            return false;
+          },
+          select: function (event, ui) {
+            $("#artistUl").append("<li data-id=" + $.trim( ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTagArtist\" style='margin-right:30px' data-type='artist' data-id=" +
+              $.trim(
+                ui.item.id) + "></i>"
+              + "</li>");
+            vartists.push(
+              $.trim(
+                ui.item.id
+              )
+            );
+            console.log(vartists);
+            this.value = "";
+            document.getElementById('Artists').value = vartists;
+            return false;
+          }
+        });
+
+
+
+
+
+      $( "#iMusic" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag", new {type="music"} )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+
+            return false;
+          },
+          select: function (event, ui) {
+            $("#musicUl").append("<li data-id=" + $.trim( ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTagMusic\" style='margin-right:30px' data-type='music' data-id=" +
+              $.trim(
+                ui.item.id) + "></i>"
+              + "</li>");
+            vmusics.push(
+              $.trim(
+                ui.item.id
+              )
+            );
+            console.log(vmusics);
+            this.value = "";
+            document.getElementById('Musics').value = vmusics;
+            return false;
+          }
+        });
+
+      $( "#iStyle" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag",new {type="style"} )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+            return false;
+          },
+          select: function (event, ui) {
+            $("#styleUl").append("<li data-id=" + $.trim( ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTagStyle\" style='margin-right:30px' data-type='style' data-id=" +
+              $.trim(
+                ui.item.id) + "></i>"
+              + "</li>");
+            vstyles.push(
+              $.trim(
+                ui.item.id
+              )
+            );
+            console.log(vstyles);
+            this.value = "";
+            document.getElementById('Styles').value = vstyles;
+            return false;
+          }
+        });
+
+
+    });
+  </script>
+
+}

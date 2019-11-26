@@ -1,0 +1,11 @@
+{ 
+  "author": "Taherian", 
+  "classifications": [ "MVC", ".NET Core", "ASP.NET Core" ],  
+  "name": "core Empty1", 
+  "identity": "MusicProject", 
+  "shortName": "coreProject", 
+  "tags": { 
+    "language": "C#" 
+  }, 
+  "sourceName": "MusicProject" 
+}

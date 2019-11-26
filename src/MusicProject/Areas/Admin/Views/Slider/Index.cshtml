@@ -1,0 +1,159 @@
+@using MusicProject.Common
+@model PagedSliderViewModel
+@inject IUnitOfWork Uow
+@{
+  var typetext = "";
+  var type = Context.Request.Query["type"].ToString();
+  if (type == "1")
+  {
+    typetext = "اپلیکیشن";
+
+    ViewData["Title"] = "لیست اسلایدر اپلیکیشن ";
+  }
+  else if (type == "2")
+  {
+    typetext = "سایت";
+
+    ViewData["Title"] = "لیست اسلایدر سایت ";
+  }
+
+}
+
+<div class="row">
+
+
+  <div class="col-lg-12">
+
+    <div class="card">
+      <div class="card-header">
+        <strong>جستجو</strong>
+      </div>
+      <form class="mb-0">
+
+        <input type="hidden" name="type" value="@Context.Request.Query["type"]" />
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="title">عنوان</label>
+                <input class="form-control" placeholder="لطفا قسمتی از عنوان را وارد نمایید" type="text" name="title" value="@Context.Request.Query["title"]">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>وضعیت</label>
+                <div class="col-md-10">
+                  <select name="state" value="@Context.Request.Query["state"]">
+                    <option value="enable" selected="selected">فعال</option>
+                    <option value="diable">غیر فعال</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> جستجو</button>
+        </div>
+      </form>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i>
+        @ViewData["Title"]
+        <span class="label label-info">
+          @Model.Paging.TotalItems.ToPersianNumbers()
+        </span>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>عنوان</th>
+              <th>تصویر</th>
+              <th>لینک</th>
+              <th>ویرایش</th>
+              <th>حذف</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (Model.SliderItem.Any())
+            {
+
+              foreach (var item in Model.SliderItem)
+              {
+                <tr>
+                  <td>
+                    @item.Title
+                  </td>
+                  <td>
+                    <img src="~/content/files/slider/@item.Thumbnail" style="max-width: 150px" />
+                  </td>
+                  <td>
+                    <a href="@item.Link">مشاهده</a>
+                    <div>
+                      @item.Link
+                    </div>
+                  </td>
+                  <td>
+                    <a class="btn btn-info" asp-controller="Slider" asp-action="Edit" asp-route-id="@item.Id">
+                      <i class="fa fa-edit "></i>
+                    </a>
+                  </td>
+                  <td>
+                    <form role="form" class="form-inline delForm" asp-controller="Slider" asp-action="Delete">
+                      <input type="hidden" id="id" name="id" value="@item.Id" />
+                      <input type="hidden" id="type" name="type" value="@item.TypeId" />
+
+                      <button type="submit" class="btn btn-danger">
+                        <i class="fa fa-trash-o "></i>
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              }
+            }
+            else
+            {
+              <div class="alert alert-warning">موردی یافت نشد.</div>
+            }
+
+          </tbody>
+        </table>
+        <div align="center">
+
+          <cs-pager cs-paging-info="@Model.Paging"
+                    asp-action="Index" asp-controller="Slider"
+                    asp-route-type="@Model.Type"
+                    asp-route-state="@Model.State"
+                    asp-route-title="@Model.Title"
+                    asp-route-pagesize="@Model.Paging.ItemsPerPage"
+                    cs-show-first-last="true"
+                    cs-suppress-empty-nextprev="true"
+                    cs-suppress-inactive-firstlast="true"
+                    cs-first-page-text="ابتدا"
+                    cs-last-page-text="انتها"
+                    cs-pager-li-current-class="page-item active"
+                    cs-pager-li-non-active-class="disabled"></cs-pager>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+</div>
+
+
+
+@section Scripts
+  {
+  <script type="text/javascript">
+    $('.delForm').submit(function () {
+      var status = confirm("آیا برای حذف مطمئن هستید؟");
+      if (status === false) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+  </script>
+}

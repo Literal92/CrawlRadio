@@ -1,0 +1,38 @@
+﻿  
+@model List<TagViewModel>;
+<div class="container">
+  <div class="row header-slider">
+    <div class="col-sm-12">
+      <a class="slider-header-title">
+        هنرمندان
+      </a>
+      <a class="show-all-slider btn" asp-controller="Artist" asp-action="Index"> نمایش همه</a>
+    </div>
+  </div>
+  <div class="row position-relative">
+
+    <a style="" class="slider-left-arrow artistNextBtn">
+      <i class="fas fa-chevron-left"></i>
+    </a>
+
+    <a style="" class="slider-right-arrow artistPrevBtn">
+      <i class="fas fa-chevron-right"></i>
+    </a>
+    <div class="owl-carousel owl-theme artist-slider col-sm-12">
+      @foreach (var artist in Model)
+      {
+        <div>
+          <a asp-controller="Artist" asp-action="Detail" asp-route-id="@artist.Id">
+            <img src="/content/files/tag/@artist.Thumbnail"/>
+            <h5 class="artist-name">
+              @artist.Title
+            </h5>
+          </a>
+
+        </div>
+      }
+
+      </div>
+
+    </div>
+  </div>

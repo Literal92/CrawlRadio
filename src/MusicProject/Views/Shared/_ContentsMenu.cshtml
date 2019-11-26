@@ -1,0 +1,365 @@
+
+
+@*<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت آلبوم ها</a>
+  <ul class="nav-dropdown-items">
+
+    <security-trimming asp-area="Admin" asp-controller="Category" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Category" asp-action="Create" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت آلبوم
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Category" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Category" asp-action="Index" asp-area="Admin" asp-route-type="1" asp-route-IsPublic="-1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست آلبوم ها
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+</li>*@
+
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت  آهنگ ها</a>
+  <ul class="nav-dropdown-items">
+    <security-trimming asp-area="Admin" asp-controller="Content" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Content" asp-action="Create" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت آهنگ
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Content" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Content" asp-action="Index" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست آهنگ ها
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+</li>
+
+
+@*<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت تگ ها</a>
+  <ul class="nav-dropdown-items">
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Create" asp-area="Admin" asp-route-type="tag" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت تگ
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Index" asp-area="Admin" asp-route-type="tag" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست تگ ها
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت  سبک ها</a>
+  <ul class="nav-dropdown-items">
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Create" asp-area="Admin" asp-route-type="style" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت سبک
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Index" asp-area="Admin" asp-route-type="style" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست سبک ها
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت  ساز ها</a>
+  <ul class="nav-dropdown-items">
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Create" asp-area="Admin" asp-route-type="music" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت ساز
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Index" asp-area="Admin" asp-route-type="music" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست ساز ها
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت  هنرمندان</a>
+  <ul class="nav-dropdown-items">
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Create" asp-area="Admin" asp-route-type="artist" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت هنرمند
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Index" asp-area="Admin" asp-route-type="artist" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست هنرمندان
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت  ویدیو ها</a>
+  <ul class="nav-dropdown-items">
+    <security-trimming asp-area="Admin" asp-controller="ContentFile" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="ContentFile" asp-action="Create" asp-area="Admin" asp-route-type="video" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت ویدیو
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="ContentFile" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="ContentFile" asp-action="Index" asp-area="Admin" asp-route-type="video" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست ویدیو ها
+        </a>
+      </li>
+    </security-trimming>
+
+  </ul>
+
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت  اسلایدر ها</a>
+  <ul class="nav-dropdown-items">
+    <security-trimming asp-area="Admin" asp-controller="Slider" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Slider" asp-action="Create" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت اسلایدر اپلیکیشن
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Slider" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Slider" asp-action="Index" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست اسلایدر اپلیکیشن
+        </a>
+      </li>
+    </security-trimming>
+
+    <security-trimming asp-area="Admin" asp-controller="Slider" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Slider" asp-action="Create" asp-area="Admin" asp-route-type="2" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت اسلایدر سایت
+        </a>
+      </li>
+    </security-trimming>
+
+    <security-trimming asp-area="Admin" asp-controller="Slider" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Slider" asp-action="Index" asp-area="Admin" asp-route-type="2" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست اسلایدر سایت
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت  تنظیمات اپلیکیشن</a>
+  <ul class="nav-dropdown-items">
+    <security-trimming asp-area="Admin" asp-controller="AppSetting" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="AppSetting" asp-action="Edit" asp-area="Admin" asp-route-id="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          تنظیمات اپلیکیشن
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت  لیست پخش ها</a>
+  <ul class="nav-dropdown-items">
+    <security-trimming asp-area="Admin" asp-controller="ContentList" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="ContentList" asp-action="Create" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت لیست پخش
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="ContentList" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="ContentList" asp-action="Index" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست پخش ها
+        </a>
+      </li>
+    </security-trimming>
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Create" asp-area="Admin" asp-route-type="cat" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت دسته بندی
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Index" asp-area="Admin" asp-route-type="cat" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست دسته بندی ها
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت   پادکست ها</a>
+  <ul class="nav-dropdown-items">
+    <security-trimming asp-area="Admin" asp-controller="Podcast" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Podcast" asp-action="Create" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت  پادکست
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Podcast" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Podcast" asp-action="Index" asp-area="Admin" asp-route-type="1" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست پادکست ها
+        </a>
+      </li>
+    </security-trimming>
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Create" asp-area="Admin" asp-route-type="podcast" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت نویسنده گوینده تدوینگر
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Index" asp-area="Admin" asp-route-type="podcast" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست  نویسنده گوینده تدوینگر
+        </a>
+      </li>
+    </security-trimming>
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Create" asp-area="Admin" asp-route-type="podcastcat" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت دسته بندی پادکست
+        </a>
+      </li>
+    </security-trimming>
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Index" asp-area="Admin" asp-route-type="podcastcat" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست  دسته بندی پادکست
+        </a>
+      </li>
+    </security-trimming>
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Create">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Create" asp-area="Admin" asp-route-type="podcasttag" class="nav-link">
+          <i class="icon-puzzle"></i>
+          ثبت تگ پادکست
+        </a>
+      </li>
+    </security-trimming>
+
+    <security-trimming asp-area="Admin" asp-controller="Tag" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Tag" asp-action="Index" asp-area="Admin" asp-route-type="podcasttag" class="nav-link">
+          <i class="icon-puzzle"></i>
+          لیست  تگ پادکست
+        </a>
+      </li>
+    </security-trimming>
+  </ul>
+</li>
+
+<li class="nav-item nav-dropdown">
+  <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت نظرات</a>
+  <ul class="nav-dropdown-items">
+
+    <security-trimming asp-area="Admin" asp-controller="Comment" asp-action="Index">
+      <li class="nav-item">
+        <a asp-controller="Comment" asp-action="Index" asp-area="Admin" class="nav-link">
+          <i class="icon-puzzle"></i>
+          نظرات
+        </a>
+      </li>
+    </security-trimming>
+
+  </ul>
+</li>
+
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-puzzle"></i> مدیریت ارتباط با ما</a>
+    <ul class="nav-dropdown-items">
+
+        <security-trimming asp-area="Admin" asp-controller="ContactUs" asp-action="Index">
+            <li class="nav-item">
+                <a asp-controller="ContactUs" asp-action="Index" asp-area="Admin" class="nav-link">
+                    <i class="icon-puzzle"></i>
+                    لیست ارتباط با ما
+                </a>
+            </li>
+        </security-trimming>
+
+    </ul>
+</li>*@

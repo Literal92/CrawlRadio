@@ -1,0 +1,69 @@
+﻿@model LoginViewModel
+
+
+<form asp-controller="Login"
+      asp-action="Index1" asp-area="Identity"
+      asp-route-returnurl="@ViewData["ReturnUrl"]"
+      method="post"
+      autocomplete="off"
+      class="form-horizontal" 
+      data-ajax="true" 
+      data-ajax-method="post"
+      data-ajax-complete="loginCompleted">
+  <partial name="_CustomValidationSummary" />
+
+  <div class="inputBox">
+    <label asp-for="Username" class="inputText" id="lblUsername"></label>
+    <input asp-for="Username" autocomplete="off" dir="ltr" class="input" id="inpUsername"/>
+    <span asp-validation-for="Username" class="text-danger"></span>
+  </div>
+
+  <div class="inputBox">
+    <label asp-for="Password" class="inputText" id="lblloginPass"></label>
+    <input asp-for="Password" dir="ltr" class="input" id="inpPass"/>
+    <span asp-validation-for="Password" class="text-danger"></span>
+  </div>
+
+  <div class="inputBox row">
+    <label class="col col-md-3  control-label" style="color: #727a87">
+      کد امنیتی
+    </label>
+    <div class="controls col col-md-9">
+      <dnt-captcha asp-captcha-generator-max="1000" 
+                   asp-captcha-generator-min="1"
+                   asp-captcha-generator-language="Persian"
+                   asp-font-name="Tahoma"
+                   asp-font-size="20"
+                   asp-fore-color="#ccd1d8"
+                   asp-refresh-button-class="fas fa-sync-alt btn-sm login-captcha"
+
+                   asp-back-color="#00000000"
+                   asp-text-box-class="text-box single-line form-control col-md-12 input text-right regcapt"
+                   asp-text-box-template="<div class='input-group col-md-12'><span class='input-group-addon'><span class='glyphicon glyphicon-lock'></span></span>{0}</div>"
+                   asp-validation-message-class="text-danger"   />
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <span class="text-danger login-error">
+    
+      </span>
+      <a asp-action="Index" asp-controller="ForgotPassword" class="remember-lbl d-none">کلمه‌ی عبور خود را فراموش کرده‌اید؟</a>
+      @*<div class="checkbox">
+        <label asp-for="RememberMe">
+          <input asp-for="RememberMe" />
+          @Html.DisplayNameFor(m => m.RememberMe)
+        </label>
+      </div>*@
+      <button type="submit" class="btn  float-left btn-login mt-0">ورود</button>
+    </div>
+  </div>
+
+ 
+</form>
+
+
+
+
+
+

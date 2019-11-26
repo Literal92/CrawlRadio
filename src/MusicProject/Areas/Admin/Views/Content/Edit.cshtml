@@ -1,0 +1,652 @@
+﻿
+@using MusicProject.Common.GuardToolkit
+@model ContentCreateViewModel
+@{
+  ViewData["Title"] = " ویرایش";
+  var hide20 = "";
+  var hideContent = "";
+  var hideExpo = "";
+  var type = Context.Request.Query["type"].ToString();
+  var hidesaken = "";
+  var hidedaftar = "";
+  var hidetizer = "";
+  var hidekatalog = "";
+  var hidesocial = "";
+
+  if (type == "1")
+  {
+    ViewData["Title"] = "ویرایش آهنگ";
+    ViewBag.BreadCrump = ViewData["Title"];
+    hide20 = "d-none";
+  }
+
+
+  }
+
+
+
+}
+
+
+
+<div class="card">
+
+  <form asp-controller="Content"
+        asp-action="Edit"
+        method="post"
+        enctype="multipart/form-data"
+        class="form-horizontal">
+
+
+    <div class="card-header">
+      <strong>
+
+        @ViewData["Title"]
+      </strong>
+
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <partial name="_CustomValidationSummary" />
+
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-sm-12">
+          <div class="form-group row">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+              <input dir="rtl" asp-for="Title" class="form-control" />
+              <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group row d-none">
+
+            <label class="col-md-2 form-control-label" asp-for="SubTitle"></label>
+
+
+            <div class="col-md-10">
+              <input asp-for="SubTitle" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="SubTitle" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row  d-none">
+
+            <label class="col-md-2 form-control-label" asp-for="HeadLine"></label>
+
+
+            <div class="col-md-10">
+              <input asp-for="HeadLine" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="HeadLine" class="text-danger"></span>
+            </div>
+          </div>
+          <div style="display: none">
+            <input asp-for="Id" />
+
+
+            <input asp-for="Pic" />
+
+            <input asp-for="Mp364Bit" />
+            <input asp-for="CategoryId" />
+            <input asp-for="Mp3128Bit" />
+            <input asp-for="Mp3320Bit" />
+
+            <input asp-for="MediumPic" />
+            <input asp-for="Thumbnail" />
+
+            <input asp-for="Pic2" />
+            <input asp-for="MediumPic2" />
+            <input asp-for="Thumbnail2" />
+
+            <input asp-for="Pic3" />
+            <input asp-for="MediumPic3" />
+            <input asp-for="Thumbnail3" />
+
+            <input asp-for="TypeId" />
+            <input asp-for="PdfFileName" />
+            <input asp-for="VideoFileName" />
+            <input asp-for="SvgStr" />
+            <input asp-for="ContentFiles" />
+
+          </div>
+
+
+        <div class="form-group row ">
+
+          <label class="col-md-2 form-control-label" asp-for="Description"></label>
+
+          <div class="col-md-10">
+            <textarea asp-for="Description" class="form-control"></textarea>
+
+            <span asp-validation-for="Description" class="text-danger"></span>
+          </div>
+        </div>
+
+          <div class="form-group row d-none">
+
+            <label class="col-md-2 form-control-label" asp-for="SeoDescription"></label>
+
+
+            <div class="col-md-10">
+              <input asp-for="SeoDescription" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="SeoDescription" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group row ">
+            <label asp-for="Category" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+              <span>
+                @ViewBag.CategoryName
+              </span>
+              <select asp-for="CategoryId" class="form-control category" asp-items="ViewBag.CategoryId">
+                <option value="@Model.CategoryId" selected="selected">@ViewBag.CategoryName</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group row  ">
+            <label class="col-md-2 form-control-label" asp-for="Priority"></label>
+            <div class="col-md-10">
+              <input asp-for="Priority" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group row  d-none">
+            <label asp-for="IsArchive" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+              <label class="checkbox-inline" asp-for="IsArchive">
+                <input asp-for="IsArchive" class="form-control" type="checkbox">
+
+              </label>
+            </div>
+          </div>
+          <div class="form-group row  d-none">
+
+            <label class="col-md-2 form-control-label" asp-for="Link"></label>
+
+            <div class="col-md-10">
+              <input asp-for="Link" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Link" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">
+              تاریخ انتشار
+            </label>
+            <div class="col-md-10">
+
+              <input type="text" asp-for="RegisterDate" onclick="PersianDatePicker.Show(this, '@ViewBag.CurrentDate');" class="form-control" />
+
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">
+              ساعت انتشار
+            </label>
+            <div class="col-md-10">
+
+              <div class="input-group bootstrap-timepicker timepicker">
+                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+
+                <input type="text" class="form-control timePicker" asp-for="RegisterTime">
+              </div>
+
+            </div>
+          </div>
+
+
+        <div class="form-group row ">
+          <label asp-for="PhotoFileName" class="col-md-2 control-label"></label>
+
+          <div class="col col-md-10">
+            <img src="~/content/files/content/@Model.Thumbnail"
+                 asp-append-version="true" alt="" />
+            <input type="file" asp-for="Photo" class="form-control" />
+            <span asp-validation-for="Photo" class="text-danger"></span>
+          </div>
+        </div>
+        <hr/>
+
+          <div class="form-group row ">
+            <label asp-for="Mp364Name" class="col-md-2 control-label"></label>
+
+            <div class="col col-md-10">
+              <audio controls="" src="/content/files/album/@Model.Mp364Bit"></audio>
+              <input type="file" asp-for="Mp364" class="form-control" />
+              <span asp-validation-for="Mp364" class="text-danger"></span>
+            </div>
+          </div>
+        <hr/>
+
+          <div class="form-group row ">
+            <label asp-for="Mp3128Name" class="col-md-2 control-label"></label>
+
+            <div class="col col-md-10">
+              <audio controls="" src="/content/files/album/@Model.Mp3128Bit"></audio>
+              <input type="file" asp-for="Mp3128" class="form-control" />
+              <span asp-validation-for="Mp3128" class="text-danger"></span>
+            </div>
+          </div>
+          <hr/>
+          <div class="form-group row">
+            <label asp-for="Mp3320Name" class="col-md-2 control-label"></label>
+            <div class="col col-md-10">
+              <audio controls="" src="/content/files/album/@Model.Mp3320Bit"></audio>
+              <input type="file" asp-for="Mp3320" class="form-control" />
+              <span asp-validation-for="Mp3320" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row  d-none">
+            <label asp-for="PhotoFileName2" class="col-md-2 control-label"></label>
+            <div class="col col-md-10">
+              <img src="~/content/files/content/@Model.Thumbnail2"
+                   asp-append-version="true" alt="" />
+              <input type="file" asp-for="Photo2" class="form-control" />
+              <span asp-validation-for="Photo2" class="text-danger"></span>
+            </div>
+          </div>
+
+
+          <div class="form-group row  d-none">
+            <label asp-for="PhotoFileName3" class="col-md-2 control-label"></label>
+            <div class="col col-md-10">
+              <img src="~/content/files/content/@Model.Thumbnail3"
+                   asp-append-version="true" alt="" />
+              <input type="file" asp-for="Photo3" class="form-control" />
+              <span asp-validation-for="Photo3" class="text-danger"></span>
+            </div>
+          </div>
+
+
+
+
+
+          <div class="form-group row d-none">
+            <label asp-for="PdfFileName" class="col-md-2 control-label">
+              فایل صوتی
+            </label>
+
+            <div class="col-md-10">
+
+              <input type="file" asp-for="Pdf" class="form-control" />
+              <span asp-validation-for="Pdf" class="text-danger"></span>
+
+
+            </div>
+          </div>
+        
+        <div class="form-group row  d-none">
+            <label asp-for="VideoFileName" class="col-md-2 control-label"></label>
+            <div class="col col-md-9">
+
+              <video src="~/content/files/content/video/@Model.VideoFileName" controls="" style="max-width: 100%"></video>
+
+              <input type="file" asp-for="Video" class="form-control" />
+              <span asp-validation-for="Video" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row  d-none">
+            <label class="col-md-2 control-label">اس وی جی</label>
+
+
+            <div class="col col-md-10">
+              @Html.Raw(Model.SvgStr)
+              <input type="hidden" asp-for="SvgStr" />
+              <input type="file" asp-for="Svg" class="form-control" />
+              <span asp-validation-for="Svg" class="text-danger"></span>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-6  d-none">
+
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">متن</label>
+
+            <div class="col col-md-10">
+
+              <textarea asp-for="ContentText" class="editor"></textarea>
+
+
+            </div>
+          </div>
+
+
+
+
+          <div class="form-group row @hideContent  @hideExpo">
+            <label class="col-md-2 control-label">
+
+              تگ ها
+            </label>
+            <div class="col-md-10">
+
+              <input id="tags" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="ta" class="list-unstyled">
+
+                  @foreach (var i in Model.ContentTags.ToList())
+                  {
+
+                    <li data-id='@i.Id'>
+                      @i.Tag.Title
+                      <i class="fa fa-times removeTag" style='margin-right: 30px' data-id='@i.Id'></i>
+                    </li>
+                  }
+                </ul>
+
+              </div>
+              @Html.HiddenFor(model => model.Tags)
+              @Html.HiddenFor(model => model.TypeId)
+
+
+            </div>
+          </div>
+
+          <div class="form-group row @hideContent">
+            <label class="control-label col-md-2">تصاویر</label>
+
+            <div class="col-md-10">
+              <div>
+
+                @{
+                  var pics = Model.ContentFiles;
+                  if (pics != null)
+                  {
+                    <ul class="list-inline">
+                      @foreach (var p in pics)
+                      {
+                        <li style="margin: 3px" class="list-inline-item">
+
+                          <img src="~/Content/Files/Content/files/@p.Thumbnail" style="max-width: 150px" />
+
+                          <a onclick="delPic(this, @p.Id)">
+                            حذف
+                          </a>
+
+                        </li>
+                      }
+
+                    </ul>
+                  }
+                }
+
+                <ul class="list-inline" id="uploads">
+
+
+                  <li>
+                    <input type="file" name="Files" style="margin: 3px" />
+                  </li>
+                  <li><input type="file" name="Files" style="margin:3px" /></li>
+                  <li><input type="file" name="Files" style="margin:3px" /></li>
+
+
+                  <li id="uploadtemplate">
+                    <input type="file" name="Files" />
+                  </li>
+                  <li id="addFile" style="margin: 10px">
+                    <a href="#">اضافه کردن فایل دیگر</a>
+                  </li>
+
+                </ul>
+
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+    <div class="card-footer">
+
+      <input type="hidden" asp-for="TypeId" value="@Context.Request.Query["type"]" />
+      @Html.HiddenFor(model => model.Tags)
+
+      <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> ثبت</button>
+      <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> بازنشانی</button>
+    </div>
+  </form>
+
+</div>
+@section Scripts
+  {
+
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link href="~/content/css/PersianDatePicker.min.css" rel="stylesheet" />
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <script src="~/content/js/PersianDatePicker.min.js"></script>
+
+  <script src="~/content/plugin/tinymce/tinymce.min.js"></script>
+
+  <script>
+    tinymce.init({
+      selector: '.editor',
+
+      plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+      ],
+      paste_data_images: true,
+      images_upload_url: '/admin/content/UploadImage',
+      images_upload_base_path: '',
+      height: "280",
+      directionality: 'rtl',
+      language: 'fa_IR'
+    });</script>
+  >
+
+  <script>
+    var tagss=[];
+    $(function () {
+
+
+      tagss = '@Model.Tags'.split(",");
+
+      $('#addFile').data('uploadtemplate', $('#uploadtemplate').attr('id', '').clone());
+
+      $('#addFile').click(function(e) {
+
+        $(this).data('uploadtemplate').clone().insertBefore(this);
+        e.preventDefault();
+      });
+
+      $('body').on('click', '.removeTag', function() {
+
+
+        var index = tagss.indexOf( $.trim(  $(this).data("id")));
+
+        if (index > -1) {
+          tagss.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(tagss);
+
+        document.getElementById('Tags').value = tagss;
+      });
+
+
+      function split( val ) {
+        return val.split( /,\s*/ );
+      }
+      function extractLast( term ) {
+        return split( term ).pop();
+      }
+
+      $( "#tags" )
+        // don't navigate away from the field on tab when selecting an item
+        .on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          @*source: function( request, response ) {
+            $.getJSON('@Url.Action("GetTags", "Content")', {
+              term: extractLast( request.term )
+            }, response );
+          },*@
+
+          source: '@Url.Action("GetTags", "Tag",new {type="tag"})',
+
+          search: function() {
+            // custom minLength
+            var term = extractLast(this.value);
+
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+            // prevent value inserted on focus
+            return false;
+          },
+          select: function (event, ui) {
+
+            $("#ta").append("<li data-id=" + $.trim( ui.item.id) + ">"
+
+              + ui.item.value +
+
+
+              "<i class=\"fa fa-times removeTag\" style='margin-right:30px'  data-id=" +
+
+              $.trim(
+              ui.item.id) + "></i>"
+
+
+
+              + "</li>");
+            tagss.push(
+              $.trim(
+              ui.item.id
+                )
+            );
+
+            console.log(tagss);
+            this.value = "";
+
+
+            document.getElementById('Tags').value = tagss;
+
+            return false;
+          }
+        });
+    });
+
+    function delPic(tis, id) {
+      if (confirm("آیا مطمئن هستید؟ ")) {
+
+        $.ajax({
+          url: '/admin/Content/DelPic/'+id,
+          type: 'POST',
+          data: JSON.stringify({ "id": id }),
+          contentType: 'application/json; charset=utf-8',
+          success: function (data) {
+            if (data) {
+
+
+
+              $(tis).parent().fadeOut(300);
+
+            }
+
+          },
+          error: function () {
+            alert("error");
+          }
+        });
+      }
+    }
+  </script>
+
+  <script src="~/content/js/bootstrap-timepicker.min.js"></script>
+
+  <link href="~/content/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+  <script type="text/javascript">
+    $('.timePicker').timepicker();
+  </script>
+  
+  
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+
+      $('.category').select2(
+        {
+          tags: true,
+          placeholder: 'نام آلبوم را وارد نمایید',
+          //Does the user have to enter any data before sending the ajax request
+          minimumInputLength: 0,
+          allowClear: true,
+
+
+          ajax: {
+            //How long the user has to pause their typing before sending the next request
+            delay: 150,
+            //The url of the json service
+            url: '@Url.Action("GetStartBy", "Category")',
+            dataType: 'json',
+            async: true,
+            //Our search term and what page we are on
+            data: function (params) {
+              return {
+                pageSize: 20,
+                pageNum: params.page || 1,
+                searchTerm: params.term,
+                //Value from client side.
+                countyId: 'vv'
+              };
+            },
+            processResults: function (data, params) {
+             
+              params.page = params.page || 1;
+              return {
+                results: $.map(data.results, function (obj) {
+                
+                  return { id: obj.id, text: obj.title };
+                }),
+                pagination: {
+                  more: (params.page * 20) <= data.total
+                }
+              };
+            }
+
+
+          }
+        });
+
+
+ 
+    });
+  </script>
+  
+  
+
+}

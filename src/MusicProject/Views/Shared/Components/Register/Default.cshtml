@@ -1,0 +1,75 @@
+﻿@model RegisterViewModel
+
+<form asp-controller="Register"  data-ajax="true" data-ajax-method="post"
+      asp-action="Index"
+      method="post" asp-area="Identity"
+      class="form-horizontal"  data-ajax-complete="registerCompleted" autocomplete="off">
+  <partial name="_CustomValidationSummary" />
+
+
+  <div class="inputBox">
+    <label asp-for="FirstName" class="inputText"></label>
+
+    <input dir="rtl" asp-for="FirstName" class="input" autocomplete="off"  />
+    <span asp-validation-for="FirstName" class="text-danger"></span>
+  </div>
+
+
+
+  <div class="inputBox">
+    <label asp-for="Username" class="inputText"></label>
+
+    <input dir="ltr" asp-for="Username" class="input" autocomplete="off" />
+    <span asp-validation-for="Username" class="text-danger"></span>
+    @*<span class="optional-label">(جهت لاگین)</span>*@
+
+  </div>
+
+  <div class="inputBox">
+
+    <label asp-for="PhoneNumber" class="inputText"></label>
+
+    <input dir="ltr" asp-for="PhoneNumber" class="input" autocomplete="off"/>
+    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    <span class="optional-label"></span>
+  </div>
+
+  <div class="inputBox">
+    <label asp-for="Password" class="inputText"  autocomplete="off"></label>
+    <input dir="ltr" asp-for="Password" class="input" />
+    <span asp-validation-for="Password" class="text-danger"></span>
+  </div>
+
+
+  @*<div class="inputBox">
+    <label asp-for="ConfirmPassword" class="inputText"></label>
+
+    <input dir="ltr" asp-for="ConfirmPassword" class="input" />
+    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+  </div>*@
+  <div class="row">
+    <label class="col col-md-3 control-label" style="color: #727a87">
+      کد امنیتی
+    </label>
+    <div class="controls col col-md-9 inputBox">
+      <dnt-captcha asp-captcha-generator-max="1000"
+                   asp-captcha-generator-min="1"
+                   asp-captcha-generator-language="Persian"
+                   asp-font-name="Tahoma"
+                   asp-font-size="20"
+                   asp-fore-color="#ccd1d8"
+                   asp-refresh-button-class="fas fa-sync-alt btn-sm refresh-captcha"
+                   asp-back-color="#00000000"
+                   asp-text-box-class="text-box single-line form-control col-md-12 text-right input regcapt"
+                   asp-text-box-template="<div class='input-group col-md-9 pr-0'><span class='input-group-addon'><span class='glyphicon glyphicon-lock'></span></span>{0}</div>"
+                   asp-validation-message-class="text-danger" />
+      <span class="alert-danger captcha-error"> کد امنیتی وارد شده صحیح نمیباشد</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" col-md-12">
+      <button type="submit" class="btn btn-register float-left">ثبت نام</button>
+    </div>
+  </div>
+</form>

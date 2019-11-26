@@ -1,0 +1,115 @@
+﻿@model List<SliderViewModel>;
+<div class="slider">
+  <div class="container position-relative">
+    <span class="owlNextBtn1"><i class="fas fa-chevron-right"></i></span>
+    <span class="owlPrevBtn1"><i class="fas fa-chevron-left"></i></span>
+  </div>
+
+  <div id="owl-example" class="owl-carousel owl-slider">
+
+    @foreach (var slider in Model)
+    {
+
+      if (slider.IsAlbum)
+      {
+        <div>
+          <div class="owl-slide" style="background-image: url('/content/files/slider/@slider.Pic')">
+          </div>
+          <div class="container title-container">
+            <div class="row">
+              <div class="col-xl-8 col-lg-7 slide-info">
+                <div class="slider-title">
+                  @slider.Title
+                </div>
+                <div class="slider-subtitle mt-2">
+                  @slider.SubTitle
+                </div>
+
+                <div class="slider-btn-container">
+                  <a class="btn-gold btn play-album-buttom" data-id="@slider.Id">
+                    پخش آلبوم
+                  </a>
+                  <a class="btn-gold-outline btn" href="@slider.Link">
+                    اطلاعات بیشتر
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-4 col-lg-5 playlist-container">
+
+                <div class="slider-albumList-container">
+                  <div>
+                    <span class="albumlist-title">
+                      لیست پخش آلبوم
+                    </span>
+                    <span class="float-left albumlist-visit">
+                      @slider.Category.VisitCount
+                      <i class="fas fa-eye"></i>
+                    </span>
+                  </div>
+                  <div class="position-relative tracks-list" style="overflow: hidden">
+                    <div class="scroller">
+                      <div class="track-container track-container-@slider.Id" data-id="@slider.Id">
+
+                        @{
+                          var index = 1;
+                        }
+                        @foreach (var music in slider.Musics)
+                        {
+                          <div>
+                            <span class="track-num">
+                              @(index++)
+                            </span>
+                            <span class="track-title">
+                              @music.Title
+                            </span>
+                            @*<div class="albumlist-artist">
+                                محمود صابری
+                              </div>*@
+
+                            <div class="album-like album-likeslider" data-id="@music.Id">
+                              <span>
+                                @music.LikeCount
+                              </span>
+
+
+                              <i class="fas fa-heart"></i>
+                            </div>
+                          </div>
+                        }
+
+                      </div>
+                    </div>
+                  </div>
+
+                  @*<a class="btn-slider-outline btn" href="@slider.Link">
+                      نمایش همه
+                    </a>*@
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      }
+      else
+      {
+        <div>
+          <div class="owl-slide" style="background-image: url('/content/files/slider/@slider.Pic')">
+          </div>
+        </div>
+      }
+    }
+
+
+
+
+
+
+
+
+
+  </div>
+
+</div>

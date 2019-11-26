@@ -1,0 +1,127 @@
+/* 
+	Kolor is Retina Ready
+	Laborator.co 
+*/
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+  .ras_nav {
+    background-image: url(../images/slider_nextprev_402x.png) !important;
+    background-size: 200% !important;
+  }
+  .site_footer .footer_top .footer_block h2 i.stats,
+  .site_footer .footer_top .footer_block h2 i.laboratorblogstats {
+    background-image: url(../images/footer_blocks_title_icons_402x.png) !important;
+    background-size: 100% !important;
+  }
+  .site_footer .footer_top .footer_block h2 i.blog,
+  .site_footer .footer_top .footer_block h2 i.archives,
+  .site_footer .footer_top .footer_block h2 i.recent-posts,
+  .site_footer .footer_top .footer_block h2 i.text,
+  .site_footer .footer_top .footer_block h2 i.blogroll,
+  .site_footer .footer_top .footer_block h2 i.categories {
+    background-image: url(../images/footer_blocks_title_icons_402x.png) !important;
+    background-size: 100% !important;
+  }
+  .site_footer .footer_top .footer_block h2 i.portfolio,
+  .site_footer .footer_top .footer_block h2 i.laboratorlatestportfolioitems {
+    background-image: url(../images/footer_blocks_title_icons_402x.png) !important;
+    background-size: 100% !important;
+  }
+  .site_footer .footer_top .footer_block h2 i.tweets,
+  .site_footer .footer_top .footer_block h2 i.laboratortweets {
+    background-image: url(../images/footer_blocks_title_icons_402x.png) !important;
+    background-size: 100% !important;
+  }
+  .site_footer .footer_top .footer_block .latest_posts li a,
+  .site_footer .footer_top .footer_block ul li a {
+    background-image: url(../images/arrow_left_402x.png);
+    background-size: 5px !important;
+  }
+  .site_footer .footer_top .footer_block .tweets li .tweet {
+    background-image: url(../images/tweet_bird_402x.png) !important;
+    background-size: 20px !important;
+  }
+  .site_footer .footer_bottom .social_networks li a {
+    background-image: url(../images/footer_social_media_vert_402x.png) !important;
+    background-size: 40px !important;
+  }
+  .site_footer .footer_bottom .social_networks li.top a {
+    background-image: url(../images/top_402x.png) !important;
+    background-size: 16px !important;
+  }
+  .features_tabs .feature_item i.photography {
+    background-image: url(../images/features_photography_402x.png) !important;
+    background-size: 39px;
+  }
+  .features_tabs .feature_item i.favorites {
+    background-image: url(../images/features_favorites_402x.png) !important;
+    background-size: 34px;
+  }
+  .features_tabs .feature_item i.wireless {
+    background-image: url(../images/features_wifi_402x.png) !important;
+    background-size: 38px;
+  }
+  .features_tabs .feature_item i.features_cloudsharing {
+    background-image: url(../images/features_cloudsharing_402x.png) !important;
+    background-size: 39px;
+  }
+  .hpf_hover_more i {
+    background-image: url(../images/hpf_arrow_402x.png) !important;
+    background-size: 28px;
+  }
+  .white_block .block_title i.portfolio {
+    background-image: url(../images/title_portfolio_402x.png);
+    background-size: 20px;
+  }
+  .white_block .block_title i.blog {
+    background-image: url(../images/title_blog_402x.png);
+    background-size: 14px;
+  }
+  .white_block .block_title i.gallery {
+    background-image: url(../images/title_gallery_402x.png);
+    background-size: 20px;
+  }
+  .white_block .block_title i.list {
+    background-image: url(../images/title_list_dark_402x.png);
+    background-size: 14px;
+  }
+  .white_block .block_title i.archives {
+    background-image: url(../images/title_dark_archives_402x.png);
+    background-size: 20px;
+  }
+  .head_title .search_form .input {
+    background-image: url(../images/zoom_icon_3_402x.png);
+    background-size: 17px;
+  }
+  .head_title .search_form .input:focus {
+    background-image: url(../images/zoom_icon_2_402x.png);
+    background-size: 17px;
+  }
+  .index_portfolio_env .portfolio_items li .buttons a.favorite {
+    background-image: url(../images/portfolio_like_402x.png) !important;
+    background-size: 40px;
+  }
+  .index_portfolio_env .portfolio_items li .buttons a.view {
+    background-image: url(../images/portfolio_view_item_402x.png) !important;
+    background-size: 40px;
+  }
+  .index_portfolio_env .portfolio_items li .launch {
+    background-image: url(../images/portfolio_launch_402x.png) !important;
+    background-size: 40px;
+  }
+  .two_columns .blog_entries .blog_post .block_title i.portfolio {
+    background-image: url(../images/title_portfolio_402x.png);
+    background-size: 20px;
+  }
+  .two_columns .blog_entries .blog_post .block_title i.blog {
+    background-image: url(../images/title_blog_402x.png);
+    background-size: 14px;
+  }
+  .two_columns .blog_entries .blog_post .block_title i.gallery {
+    background-image: url(../images/title_gallery_402x.png);
+    background-size: 20px;
+  }
+  .two_columns .blog_entries .blog_post .block_title i.list {
+    background-image: url(../images/title_list_dark_402x.png);
+    background-size: 14px;
+  }
+}

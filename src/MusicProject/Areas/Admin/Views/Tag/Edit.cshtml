@@ -1,0 +1,258 @@
+﻿
+@model TagViewModel
+@{
+  ViewData["Title"] = " ویرایش";
+  var hide800 = "";
+
+  var type = Context.Request.Query["type"].ToString();
+  if (type == "tag")
+  {
+    ViewData["Title"] = "ویرایش  تگ ";
+    hide800 = "d-none";
+  }
+  else if (type == "style")
+  {
+    ViewData["Title"] = "ویرایش  سبک";
+    hide800 = "d-none";
+  }
+  else if (type == "music")
+  {
+    ViewData["Title"] = "ویرایش  ساز";
+    hide800 = "d-none";
+
+
+  }
+  ViewBag.BreadCrump = ViewData["Title"];
+
+}
+
+
+<div class="card">
+
+  <form asp-controller="Tag"
+        asp-action="Edit"
+        method="post"
+        enctype="multipart/form-data"
+        class="form-horizontal">
+
+
+    <div class="card-header">
+      <strong>
+
+        @ViewData["Title"]
+      </strong>
+
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <partial name="_CustomValidationSummary" />
+
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-sm-6">
+          <div class="form-group row">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+              <input dir="rtl" asp-for="Title" class="form-control" />
+              <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label asp-for="EnglishTitle" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+              <input dir="rtl" asp-for="EnglishTitle" class="form-control" />
+              <span asp-validation-for="EnglishTitle" class="text-danger"></span>
+            </div>
+          </div>
+          
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="SeoDescription"></label>
+            <div class="col-md-10">
+              <textarea asp-for="SeoDescription" class="form-control" placeholder="" >
+              </textarea>
+              <span asp-validation-for="SeoDescription" class="text-danger"></span>
+            </div>
+          </div> 
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="SeoKeyword"></label>
+
+            <div class="col-md-10">
+              <textarea asp-for="SeoKeyword" class="form-control" placeholder="" >
+              </textarea>
+              <span asp-validation-for="SeoKeyword" class="text-danger"></span>
+            </div>
+          </div> 
+          
+
+          <div class="form-group row @hide800">
+            <label class="col-md-2 form-control-label" asp-for="Website"></label>
+
+            <div class="col-md-10">
+              <input asp-for="Website" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row @hide800">
+            <label class="col-md-2 form-control-label" asp-for="Facebook"></label>
+
+            <div class="col-md-10">
+              <input asp-for="Facebook" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Facebook" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group row @hide800">
+            <label class="col-md-2 form-control-label" asp-for="Instagram"></label>
+
+            <div class="col-md-10">
+              <input asp-for="Instagram" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Instagram" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group row @hide800">
+            <label class="col-md-2 form-control-label" asp-for="Twitter"></label>
+
+            <div class="col-md-10">
+              <input asp-for="Twitter" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Twitter" class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group row @hide800">
+            <label class="col-md-2 form-control-label" asp-for="Soundcloud"></label>
+
+            <div class="col-md-10">
+              <input asp-for="Soundcloud" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Soundcloud" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row @hide800">
+            <label class="col-md-2 form-control-label" asp-for="Spotify"></label>
+
+            <div class="col-md-10">
+              <input asp-for="Spotify" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Spotify" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row @hide800">
+            <label class="col-md-2 form-control-label" asp-for="Itunes"></label>
+
+            <div class="col-md-10">
+              <input asp-for="Itunes" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Itunes" class="text-danger"></span>
+            </div>
+          </div>
+          <div style="display: none">
+            <input asp-for="Id" />
+            <input asp-for="Pic" />
+            <input asp-for="Thumbnail" />
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label" asp-for="IsPublish">انتشار</label>
+            <div class="col-md-10 col-form-label">
+              <div class="form-check checkbox">
+                <input asp-for="IsPublish" class="form-check-input" type="checkbox">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label" asp-for="IsSelected">منتخب</label>
+            <div class="col-md-10 col-form-label">
+              <div class="form-check checkbox">
+                <input asp-for="IsSelected" class="form-check-input" type="checkbox">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label asp-for="PhotoFileName" class="col-md-2 control-label"></label>
+
+            <div class="col col-md-10">
+              <img src="~/content/files/tag/@Model.Pic"
+                   asp-append-version="true" alt="" />
+              <input type="file" asp-for="Photo" class="form-control" />
+              <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+
+        <div class="col-sm-6 ">
+
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">متن</label>
+
+            <div class="col col-md-10">
+
+              <textarea asp-for="Content" class="editor"></textarea>
+
+
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+
+
+    </div>
+    <div class="card-footer">
+
+      <input type="hidden" asp-for="Type" value="@Context.Request.Query["type"]" />
+
+
+      <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> ثبت</button>
+      <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> بازنشانی</button>
+    </div>
+  </form>
+
+</div>
+@section Scripts
+  {
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+
+  <script src="~/content/plugin/tinymce/tinymce.min.js"></script>
+
+  <script>
+    tinymce.init({
+      selector: '.editor',
+
+      plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+      ],
+      paste_data_images: true,
+      images_upload_url: '/admin/content/UploadImage',
+      images_upload_base_path: '',
+      height: "280",
+      directionality: 'rtl',
+      language: 'fa_IR'
+    });</script>
+  >
+
+
+
+}

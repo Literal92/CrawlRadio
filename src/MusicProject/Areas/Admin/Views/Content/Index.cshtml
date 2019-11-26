@@ -1,0 +1,331 @@
+@model PagedContentItemsViewModel
+
+
+<h2>
+
+    @{
+        ViewData["Title"] = "مدیریت ";
+        var hide20 = "";
+        var hidesocial = "";
+
+        if (Context.Request.Query["type"].ToString() == "1")
+        {
+            ViewData["Title"] = "لیست آهنگ ها";
+            hide20 = "d-none";
+        }
+         
+   
+  
+      
+        ViewBag.BreadCrump = ViewData["Title"];
+
+    }
+
+
+</h2>
+
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>جستجو</strong>
+            </div>
+            <form class="mb-0">
+
+                <input type="hidden" name="type" value="@Context.Request.Query["type"]" />
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="title">عنوان</label>
+                                <input class="form-control" placeholder="لطفا قسمتی از عنوان را وارد نمایید" type="text" name="title" value="@Context.Request.Query["title"]">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="from">تاریخ انتشار از</label>
+                                <input class="form-control" name="from" placeholder="از تاریخ" type="text" onclick="PersianDatePicker.Show(this, '@ViewBag.CurrentDate');" value="@Context.Request.Query["from"]">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="from">تا تاریخ</label>
+                                <input class="form-control" name="to" placeholder="تا تاریخ" type="text" onclick="PersianDatePicker.Show(this, '@ViewBag.CurrentDate');" value="@Context.Request.Query["to"]">
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="ccmonth">دسته بندی مورد نظر را انتخاب نمایید</label>
+
+
+                            <select asp-for="CategoryId" class="form-control category">
+                                <option value="@ViewBag.CategoryId" selected="selected">@ViewBag.CategoryName</option>
+                            </select>
+
+                            @*<select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+                                  <option value="0">تمام دسته ها</option>
+                                </select>*@
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> جستجو</button>
+                </div>
+
+            </form>
+
+
+
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-align-justify"></i>
+
+                @ViewData["Title"]
+                <span class="label label-info">
+                    @Model.Paging.TotalItems.ToPersianNumbers()
+                </span>
+                <a class="btn btn-success btn-xs pull-left" asp-action="Create" asp-controller="Content" asp-route-type="@Context.Request.Query["type"]" asp-route-categoryid="@Context.Request.Query["categoryid"]">افزودن یک مورد جدید</a>
+            </div>
+            <div class="card-body">
+
+
+
+                <table class="table table-striped">
+
+
+                    <thead>
+                        <tr>
+                            <th>عنوان</th>
+                            <th>دسته بندی</th>
+
+                            <th>تاریخ انتشار</th>
+
+                            <th>تاریخ ثبت</th>
+
+                            <th>تصویر</th>
+                            <th>آهنگ</th>
+                            <th>لیست ویدیوها</th>
+                            <th>ثبت ویدیو</th>
+                            <th>لیست پخش</th>
+                            <th>ویرایش</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Contents.Any())
+                        {
+
+                            foreach (var item in Model.Contents)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Title
+                                    </td>
+                                    <td>
+                                        @item.Category.Title
+                                    </td>
+                                    <td>
+                                        @item.PublishDateTime.ToLongPersianDateTimeString()
+                                    </td>
+                                    <td>
+                                        <span>@item.CreatedDateTime.ToShortPersianDateTimeString()</span>
+
+                                    </td>
+                                    <td>
+                                        @if (string.IsNullOrEmpty(item.Thumbnail))
+                                        {
+                                            <img src="~/content/images/placeholder.svg" style="max-width: 150px" asp-append-version="true" />
+                                        }
+                                        else
+                                        {
+                                            <img src="~/content/files/album/@item.Thumbnail" style="max-width: 150px" asp-append-version="true" />
+
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <audio controls="" preload="none" src="~/content/files/album/@item.Mp364" download='@item.Mp364' name='@item.Mp364'></audio>
+
+                                        @if (item.Mp364 != null)
+                                        {
+                                            <a href="~/content/files/album/@item.Mp364" download='@item.Mp364' name='@item.Mp364' class="d-block mt-2">64 دانلود </a>
+
+                                        }
+                                        @if (item.Mp3128 != null)
+                                        {
+                                            <a href="~/content/files/album/@item.Mp3128" download='@item.Mp3128' name='@item.Mp3128' class="d-block mt-2">128 دانلود </a>
+
+                                        }
+                                        @if (item.Mp3320 != null)
+                                        {
+                                            <a href="~/content/files/album/@item.Mp3320" download='@item.Mp3320' name='@item.Mp3320' class="d-block mt-2">320 دانلود </a>
+
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <a asp-controller="ContentFile" asp-action="Index" asp-route-contentId="@item.Id" asp-route-type="video">
+                                            مشاهده
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-controller="ContentFile" asp-action="Create" asp-route-contentId="@item.Id" asp-route-type="video">
+                                            ثبت ویدیو جدید
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <a class="btn btn-primary btnModalList" id="@item.Id" data-id="@item.Id" asp-controller="Content" asp-action="" asp-route-Id="@item.Id" asp-route-type="@item.TypeId">
+                                            افزودن
+                                        </a>
+                                    </td>
+
+                                    <td>
+                                        <a asp-controller="Content" asp-action="Edit" asp-route-Id="@item.Id" asp-route-type="@item.TypeId">
+                                            ویرایش
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <form role="form" class="form-inline delForm" asp-controller="Content" asp-action="Delete">
+                                            <input type="hidden" id="id" name="id" value="@item.Id" />
+                                            <input type="hidden" id="type" name="type" value="@item.TypeId" />
+                                            <input type="hidden" id="categoryId" name="categoryId" value="@Context.Request.Query["categoryId"]" />
+                                            <input type="submit" value='حذف' class="btn btn-xs btn-danger pull-right" />
+                                        </form>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-warning">موردی یافت نشد.</div>
+                        }
+
+                    </tbody>
+                </table>
+                <div align="center">
+
+                    <nav aria-label="Page navigation example " class="mt-3 mx-auto text-center">
+                        <cs-pager cs-paging-info="@Model.Paging"
+                                  asp-action="Index" asp-controller="Content"
+                                  asp-route-type="@Model.Type"
+                                  asp-route-title="@Model.Title"
+                                  asp-route-categoryid="@Model.CategoryId"
+                                  asp-route-archive="@Model.IsArchive"
+                                  asp-route-pagesize="@Model.Paging.ItemsPerPage"
+                                  cs-show-first-last="true"
+                                  cs-suppress-empty-nextprev="true"
+                                  cs-suppress-inactive-firstlast="true"
+                                  cs-first-page-text="ابتدا"
+                                  cs-last-page-text="انتها"
+                                  cs-pager-li-current-class="page-item active"
+                                  cs-pager-li-other-class="page-item"
+                                  cs-pager-link-current-class="page-link"
+                                  cs-pager-link-other-class="page-link"
+                                  cs-pager-li-non-active-class="page-item disabled">
+
+                        </cs-pager>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--/.col-->
+</div>
+
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $('.delForm').submit(function () {
+            var status = confirm("آیا برای حذف مطمئن هستید؟");
+            if (status === false) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+    </script>
+
+    <link href="~/content/css/PersianDatePicker.min.css" rel="stylesheet" />
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+
+      $('.category').select2(
+        {
+          tags: true,
+          placeholder: 'نام آلبوم را وارد نمایید',
+          //Does the user have to enter any data before sending the ajax request
+          minimumInputLength: 0,
+          allowClear: true,
+
+
+          ajax: {
+            //How long the user has to pause their typing before sending the next request
+            delay: 150,
+            //The url of the json service
+            url: '@Url.Action("GetStartBy", "Category")',
+            dataType: 'json',
+            async: true,
+            //Our search term and what page we are on
+            data: function (params) {
+              return {
+                pageSize: 20,
+                pageNum: params.page || 1,
+                searchTerm: params.term,
+                //Value from client side.
+                countyId: 'vv'
+              };
+            },
+            processResults: function (data, params) {
+
+              params.page = params.page || 1;
+              return {
+                results: $.map(data.results, function (obj) {
+
+                  return { id: obj.id, text: obj.title };
+                }),
+                pagination: {
+                  more: (params.page * 20) <= data.total
+                }
+              };
+            }
+
+
+          }
+        });
+
+        $(".btnModalList").click(function (e) {
+                e.preventDefault();
+                var contentId = $(this).data("id");
+                $.bootstrapModalAjaxForm({
+                    //postUrl: '@*@Url.Action("EditRole", "RolesManager")',*@
+                    renderModalPartialViewUrl: '@Url.Action("ContentListIndex", "Content")',
+                    renderModalPartialViewData: { "id": contentId },
+                    loginUrl: '/identity/login',
+                    beforePostHandler: function () {
+                    },
+                    completeHandler: function () {
+                        location.reload();
+                    },
+                    errorHandler: function () {
+                    }
+                });
+            });
+
+    });
+    </script>
+}

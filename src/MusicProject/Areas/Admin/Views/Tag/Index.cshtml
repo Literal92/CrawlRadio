@@ -1,0 +1,301 @@
+@model PagedTagItemsViewModel
+
+
+<h2>
+
+  @{
+    ViewData["Title"] = "مدیریت ";
+
+    if (Context.Request.Query["type"].ToString() == "tag")
+    {
+      ViewData["Title"] = "لیست تگ ها";
+
+    }
+    else if (Context.Request.Query["type"].ToString() == "style")
+    {
+      ViewData["Title"] = "لیست سبک ها";
+    }
+    else if (Context.Request.Query["type"].ToString() == "artist")
+    {
+      ViewData["Title"] = "لیست هنرمندان";
+    }
+    else if (Context.Request.Query["type"].ToString() == "music")
+    {
+      ViewData["Title"] = "لیست سازها";
+    }else if (Context.Request.Query["type"].ToString() == "cat")
+    {
+      ViewData["Title"] = "لیست دسته بندی";
+    }
+    ViewBag.BreadCrump = ViewData["Title"];
+
+  }
+
+</h2>
+
+
+<div class="row">
+
+
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <strong>جستجو</strong>
+      </div>
+      <form class="mb-0">
+
+        <input type="hidden" name="type" value="@Context.Request.Query["type"]" />
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="title">عنوان</label>
+                <input class="form-control" placeholder="لطفا قسمتی از عنوان را وارد نمایید" type="text" name="title" value="@Context.Request.Query["title"]">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="title">مرتب سازی بر اساس</label>
+                <select class="form-control" name="orderBy" asp-for="OrderBy">
+                  <option value="last">
+                    آخرین ها
+                  </option>
+                  <option value="album">
+                    تعداد آلبوم
+                  </option>  <option value="alphabet">
+                   حروف الفبا
+                  </option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="col-sm-6 form-group">
+              <label class="checkbox-inline" for="IsPublic">انتشار
+              </label>
+              <select class="form-control" name="IsPublish" id="IsPublish" asp-for="IsPublish">
+                <option value="null">
+                  همه
+                </option>
+                <option value="true">
+                  منتشر شده
+                </option>
+                <option value="false">
+                  منتشر نشده
+                </option>
+              </select>
+            </div>
+            <div class="col-sm-6 form-group">
+              <label class="checkbox-inline" for="IsPublic">منتخب
+              </label>
+              <select class="form-control" name="IsSelected" id="IsSelected" asp-for="IsSelected">
+                <option value="null">
+                  همه
+                </option>
+                <option value="true">
+                  انتخاب شده
+                </option>
+                <option value="false">
+                  انتخاب نشده
+                </option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> جستجو</button>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <i class="fa fa-align-justify"></i>
+
+        @ViewData["Title"]
+        <span class="label label-info">
+          @Model.Paging.TotalItems.ToPersianNumbers()
+        </span>
+        <a class="btn btn-success btn-xs pull-left" asp-action="Create" asp-controller="Tag" asp-route-type="@Context.Request.Query["type"]" asp-route-categoryid="@Context.Request.Query["categoryid"]">افزودن یک مورد جدید</a>
+      </div>
+      <div class="card-body">
+
+
+
+        <table class="table table-striped">
+
+
+          <thead>
+            <tr>
+              <th>عنوان</th>
+
+              <th>
+
+                @if (Context.Request.Query["type"] != "cat")
+                {
+                  <span>
+                    آلبوم ها
+                  </span>
+                }
+                else
+                {
+                  <span>
+                    لیست های پخش
+                  </span>
+                }
+
+              </th>
+              <th>انتشار</th>
+              <th>منتخب</th>
+              <th>تصویر</th>
+              <th>لینک</th>
+              <th>ویرایش</th>
+              <th>حذف</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (Model.Tags.Any())
+            {
+
+              for (int i=0; i< Model.Tags.Count;i++)
+              {
+                <tr>
+                  <td>
+                    @Model.Tags[i].Title
+                  </td>
+
+                  <td>
+                    @if (Model.Tags[i].Type != "cat")
+                    {
+                      <a asp-controller="Category" asp-action="Index" asp-route-tagId="@Model.Tags[i].Id" asp-route-type="1" asp-route-isPublic="-1" >
+                        آلبوم ها
+                      </a>
+                      <span>
+                        (@Model.Tags[i].ChildCount)
+                      </span>
+                    }
+                    else
+                    {
+                      <a asp-controller="ContentList" asp-action="Index" asp-route-tagId="@(i==Model.Tags.Count-1?0:Model.Tags[i].Id)" asp-route-type="1">
+                        لیست های پخش
+                      </a>
+                      <span>
+                        (@Model.Tags[i].ChildCount)
+                      </span>
+                    }
+                  </td>
+           
+                  <td>
+
+                    @if (Model.Tags[i].IsPublish)
+                    {
+                      <i class="fa fa-check fa-lg  " style="color: green"></i>
+                    }
+
+                    else
+                    {
+                      <i class="fa fa-close fa-lg " style="color: red"></i>
+                    }
+
+                  </td> 
+                  <td>
+
+                    @if (Model.Tags[i].IsSelected)
+                    {
+                      <span>
+                        انتخاب شده
+                        </span>
+                    }
+
+                    else
+                    {
+                      <span>
+                        انتخاب نشده
+                      </span>
+                    }
+
+                  </td>
+
+                  <td>
+                    <img src="~/content/files/tag/@Model.Tags[i].Thumbnail" style="max-width: 150px" />
+                  </td>
+                  <td>
+                    <a href="@Model.Tags[i].Link">
+                      مشاهده
+                    </a>
+                  </td>
+
+                  <td>
+                    <a asp-controller="Tag" asp-action="Edit" asp-route-id="@Model.Tags[i].Id" asp-route-type="@Model.Tags[i].Type">
+                      ویرایش
+                    </a>
+                  </td>
+                  <td>
+                    <form role="form" class="form-inline delForm" asp-controller="Tag" asp-action="Delete">
+                      <input type="hidden" id="id" name="id" value="@Model.Tags[i].Id" />
+                      <input type="hidden" id="type" name="type" value="@Model.Tags[i].Type" />
+                      <input type="submit" value='حذف' class="btn btn-xs btn-danger pull-right" />
+                    </form>
+
+                  </td>
+                </tr>
+              }
+            }
+            else
+            {
+              <div class="alert alert-warning">موردی یافت نشد.</div>
+            }
+
+          </tbody>
+        </table>
+        <div align="center">
+
+          <nav aria-label="Page navigation example " class="mt-3 mx-auto text-center">
+            <cs-pager cs-paging-info="@Model.Paging"
+                      asp-action="Index"
+                      asp-controller="Tag"
+                      asp-route-type="@Model.Type"
+                      asp-route-isSelected="@Model.IsSelected"
+                      asp-route-isPublish="@Model.IsPublish"
+                      asp-route-title="@Model.Title"
+                      asp-route-orderBy="@Model.OrderBy"
+                      asp-route-pagesize="@Model.Paging.ItemsPerPage"
+                      cs-show-first-last="true"
+                      cs-suppress-empty-nextprev="true"
+                      cs-suppress-inactive-firstlast="true"
+                      cs-first-page-text="ابتدا"
+                      cs-last-page-text="انتها"
+                      cs-pager-li-current-class="page-item active"
+                      cs-pager-li-other-class="page-item"
+                      cs-pager-link-current-class="page-link"
+                      cs-pager-link-other-class="page-link"
+                      cs-pager-li-non-active-class="page-item disabled">
+
+            </cs-pager>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--/.col-->
+</div>
+
+
+
+@section Scripts
+  {
+  <script type="text/javascript">
+    $('.delForm').submit(function () {
+      var status = confirm("آیا برای حذف مطمئن هستید؟");
+      if (status === false) {
+        return false;
+      } else {
+        return true;
+      }
+    });
+
+  </script>
+
+}

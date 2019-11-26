@@ -1,0 +1,86 @@
+﻿@model List<CategoryViewModel>
+
+<div class="row header-slider">
+  <div class="col-sm-12">
+    <a class="slider-header-title">
+      جدیدترین ها
+    </a>
+
+    <a class="show-all-slider btn" href="/Album#/page/1/date/desc">
+      نمایش همه
+    </a>
+  </div>
+</div>
+<div class="row position-relative">
+  <a style="" class="slider-left-arrow homeNextBtn">
+    <i class="fas fa-chevron-left"></i>
+  </a>
+
+  <a style="" class="slider-right-arrow homePrevBtn">
+    <i class="fas fa-chevron-right"></i>
+  </a>
+
+
+  <div class="owl-carousel owl-theme home-slider col-sm-12">
+
+
+    @{ var lastMusic = Model.ToList();}
+
+    @for (int i = 0; i < lastMusic.Count; i++)
+    {
+      <div>
+          <div class="play-album play-mobile" data-id="@lastMusic[i].Id">
+       
+              <i class="fas fa-play-circle"></i>
+
+          </div>
+          @*<a asp-controller="Album" asp-action="Detail" asp-route-id="@lastMusic[i].Id">*@
+          <div class="hover-container">
+              <img src="/content/files/album/@lastMusic[i].Thumbnail" class="hover-image" />
+              <div class="hover-overlay">
+                  <div class="hover-text">
+                      <div class="play-album" data-id="@lastMusic[i].Id">
+                          <i class="far fa-play-circle"></i>
+                      </div>
+
+
+
+                      <div>
+                          <a asp-controller="Album" asp-action="Detail" asp-route-id="@lastMusic[i].Id">
+
+                              اطلاعات بیشتر
+                          </a>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+          @*</a>*@
+          <div class="slide-title">
+              <a asp-controller="Album" asp-action="Detail" asp-route-id="@lastMusic[i].Id">
+                  @if (lastMusic[i].Title.Length > 45)
+                  {
+                      @lastMusic[i].Title.Substring(0, 45)
+                      <span class="dotted-album">
+                          ...
+                      </span>
+                      <span class="d-none">
+                          @lastMusic[i].Title.Substring(42, lastMusic[i].Title.Length - 42)
+
+                      </span>
+                  }
+                  else
+                  {
+                      @lastMusic[i].Title
+                  }
+
+              </a>
+          </div>
+          <h3 class="slide-artist">
+              @lastMusic[i].Artists
+          </h3>
+      </div>
+
+    }
+  </div>
+</div>

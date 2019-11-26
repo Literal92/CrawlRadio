@@ -1,0 +1,98 @@
+﻿@model ChangePasswordViewModel
+@{
+  ViewData["Title"] = "تغییر کلمه‌ی عبور";
+  Layout = "_Layout1";
+}
+
+<div class="container" style="margin-top: 150px">
+
+  <div class="row">
+
+    <div class="col-sm-5 mx-auto">
+
+
+
+
+      @if (Model.LastUserPasswordChangeDate.HasValue)
+      {
+        <div class="alert alert-warning">
+          <a href="#" class="close" data-dismiss="alert">×</a>
+          آخرین تاریخ تغییر کلمه‌ی عبور شما:
+          <strong>
+            @Model.LastUserPasswordChangeDate.Value.ToFriendlyPersianDateTextify()
+          </strong>
+        </div>
+      }
+      <form asp-controller="ChangePassword"
+            asp-action="Index"
+            method="post"
+            class="form-horizontal">
+
+        <partial name="_CustomValidationSummary" />
+
+        <div class="inputBox">
+          <label asp-for="OldPassword" class="inputText"></label>
+
+          <input dir="ltr" asp-for="OldPassword" class="input" />
+          <span asp-validation-for="OldPassword" class="text-danger"></span>
+
+        </div>
+        <div class="inputBox">
+          <label asp-for="NewPassword" class="inputText"></label>
+
+          <input dir="ltr" asp-for="NewPassword" class="input" />
+          <span asp-validation-for="NewPassword" class="text-danger"></span>
+
+        </div>
+        <div class="inputBox">
+          <label asp-for="ConfirmPassword" class="inputText"></label>
+
+          <input dir="ltr" asp-for="ConfirmPassword" class="input" />
+          <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+        </div>
+        <div class="form-group" style="margin-bottom: 100px">
+          <div>
+            <button type="submit" class="btn btn-edit-profile">ارسال</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">تغییر رمز عبور</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>
+          تغییر رمز عبور با موفقیت انجام شد
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts
+{
+
+   
+  @if (ViewBag.Sucsess == true)
+  {
+    <script>
+      $(document).ready(function () {
+
+        $('#myModal').modal('show');
+
+      });
+    </script>
+  }
+}

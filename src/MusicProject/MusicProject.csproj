@@ -1,0 +1,282 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <AssemblyName>MusicProject</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <PackageId>MusicProject</PackageId>
+    <LangVersion>latest</LangVersion>
+    <UserSecretsId>6cc6b887-b131-46c4-a442-0d06a9887fd2</UserSecretsId>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="wwwroot\**\*;Views\**\*;Areas\**\*.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MusicProject.Common\MusicProject.Common.csproj" />
+    <ProjectReference Include="..\MusicProject.DataLayer\MusicProject.DataLayer.csproj" />
+    <ProjectReference Include="..\MusicProject.Entities\MusicProject.Entities.csproj" />
+    <ProjectReference Include="..\MusicProject.Services\MusicProject.Services.csproj" />
+    <ProjectReference Include="..\MusicProject.ViewModels\MusicProject.ViewModels.csproj" />
+    <ProjectReference Include="..\MusicProject.IocConfig\MusicProject.IocConfig.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="bootstrap" Version="4.1.1" />
+    <PackageReference Include="DNTBreadCrumb.Core" Version="1.7.1" />
+    <PackageReference Include="DNTCaptcha.Core" Version="1.6.1" />
+    <!--<PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />-->
+    <PackageReference Include="DNTCommon.Web.Core" Version="1.3.2" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.17" />
+    <PackageReference Include="Kavenegar.Core" Version="1.0.1-alpha2" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.5" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.5" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <PlatformTarget>anycpu</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.8.391" />
+    <!--<DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />-->
+  </ItemGroup>
+  <ItemGroup>
+    <!-- extends watching group to include *.js files -->
+    <Watch Include="**\*.js" Exclude="node_modules\**\*;**\*.js.map;obj\**\*;bin\**\*;wwwroot\**\*;src\**\*" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="wwwroot\bower_components\**" />
+    <Content Remove="wwwroot\bower_components\**" />
+    <EmbeddedResource Remove="wwwroot\bower_components\**" />
+    <None Remove="wwwroot\bower_components\**" />
+    <Watch Remove="wwwroot\bower_components\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Watch Remove="Content\js\aos.js" />
+    <Watch Remove="Scripts\customc.js" />
+    <Watch Remove="Scripts\jquery-ui.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\js\jquery-ui.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Content\Create.cshtml" />
+    <None Include="Areas\Admin\Views\Content\Edit.cshtml" />
+    <None Include="Areas\Admin\Views\Content\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Identity\Views\ChangePassword\Index.cshtml" />
+    <None Include="Areas\Identity\Views\DynamicRoleClaimsManager\Index.cshtml" />
+    <None Include="Areas\Identity\Views\EmailTemplates\_ChangePasswordNotification.cshtml" />
+    <None Include="Areas\Identity\Views\EmailTemplates\_EmailsLayout.cshtml" />
+    <None Include="Areas\Identity\Views\EmailTemplates\_PasswordReset.cshtml" />
+    <None Include="Areas\Identity\Views\EmailTemplates\_RegisterEmailConfirmation.cshtml" />
+    <None Include="Areas\Identity\Views\EmailTemplates\_TwoFactorSendCode.cshtml" />
+    <None Include="Areas\Identity\Views\EmailTemplates\_UserProfileUpdateNotification.cshtml" />
+    <None Include="Areas\Identity\Views\ForgotPassword\ForgotPasswordConfirmation.cshtml" />
+    <None Include="Areas\Identity\Views\ForgotPassword\Index.cshtml" />
+    <None Include="Areas\Identity\Views\ForgotPassword\ResetPassword.cshtml" />
+    <None Include="Areas\Identity\Views\ForgotPassword\ResetPasswordConfirmation.cshtml" />
+    <None Include="Areas\Identity\Views\Home\Index.cshtml" />
+    <None Include="Areas\Identity\Views\Login\Index.cshtml" />
+    <None Include="Areas\Identity\Views\Register\ConfirmedRegisteration.cshtml" />
+    <None Include="Areas\Identity\Views\Register\ConfirmEmail.cshtml" />
+    <None Include="Areas\Identity\Views\Register\ConfirmYourEmail.cshtml" />
+    <None Include="Areas\Identity\Views\Register\Index.cshtml" />
+    <None Include="Areas\Identity\Views\RolesManager\Index.cshtml" />
+    <None Include="Areas\Identity\Views\RolesManager\UsersInRole.cshtml" />
+    <None Include="Areas\Identity\Views\RolesManager\_AllRolesList.cshtml" />
+    <None Include="Areas\Identity\Views\RolesManager\_Create.cshtml" />
+    <None Include="Areas\Identity\Views\RolesManager\_Delete.cshtml" />
+    <None Include="Areas\Identity\Views\Shared\Components\OnlineUsers\Default.cshtml" />
+    <None Include="Areas\Identity\Views\Shared\Components\TodayBirthDays\Default.cshtml" />
+    <None Include="Areas\Identity\Views\Shared\_PickupFolder.cshtml" />
+    <None Include="Areas\Identity\Views\SystemLog\Index.cshtml" />
+    <None Include="Areas\Identity\Views\TwoFactor\Lockout.cshtml" />
+    <None Include="Areas\Identity\Views\TwoFactor\VerifyCode.cshtml" />
+    <None Include="Areas\Identity\Views\UserCard\Index.cshtml" />
+    <None Include="Areas\Identity\Views\UserCard\OnlineUsers.cshtml" />
+    <None Include="Areas\Identity\Views\UserCard\_UserAdminPart.cshtml" />
+    <None Include="Areas\Identity\Views\UserCard\_UserCardItem.cshtml" />
+    <None Include="Areas\Identity\Views\UserCard\_UserInfoPart.cshtml" />
+    <None Include="Areas\Identity\Views\UserProfile\Index.cshtml" />
+    <None Include="Areas\Identity\Views\UsersManager\Index.cshtml" />
+    <None Include="Areas\Identity\Views\UsersManager\_SearchUsers.cshtml" />
+    <None Include="Areas\Identity\Views\UsersManager\_UsersList.cshtml" />
+    <None Include="Areas\Identity\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Identity\Views\_ViewStart.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Shared\AccessDenied.cshtml" />
+    <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\NotFound.cshtml" />
+    <None Include="Views\Shared\_AdminMenu.cshtml" />
+    <None Include="Views\Shared\_ContentsMenu.cshtml" />
+    <None Include="Views\Shared\_CustomValidationSummary.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_Layout1.cshtml" />
+    <None Include="Views\Shared\_ReportsMenu.cshtml" />
+    <None Include="Views\Shared\_SidebarMenu.cshtml" />
+    <None Include="Views\Shared\_UserMenu.cshtml" />
+    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\assets\css\Descr.WD3" />
+    <None Include="wwwroot\assets\css\entypo\Descr.WD3" />
+    <None Include="wwwroot\assets\css\entypo\entypo.eot%40" />
+    <None Include="wwwroot\assets\css\entypo\entypo.svg" />
+    <None Include="wwwroot\assets\fabric.min.js" />
+    <None Include="wwwroot\assets\fonts\aerolite_cp_one.eot%40" />
+    <None Include="wwwroot\assets\fonts\bloody.eot%40" />
+    <None Include="wwwroot\assets\fonts\bodoni_xt.eot%40" />
+    <None Include="wwwroot\assets\fonts\code_bold.eot%40" />
+    <None Include="wwwroot\assets\fonts\comfortaa-regular.eot%40" />
+    <None Include="wwwroot\assets\fonts\Descr.WD3" />
+    <None Include="wwwroot\assets\fonts\kimberley_bl.eot%40" />
+    <None Include="wwwroot\assets\fonts\roboto_black.eot%40" />
+    <None Include="wwwroot\assets\fonts\steelfish_rg.eot%40" />
+    <None Include="wwwroot\assets\fonts\texgyreadventor-regular.eot%40" />
+    <None Include="wwwroot\assets\images\Descr.WD3" />
+    <None Include="wwwroot\assets\images\JavaScript.js" />
+    <None Include="wwwroot\assets\images\JavaScript2.js" />
+    <None Include="wwwroot\assets\js\custom.js" />
+    <None Include="wwwroot\assets\js\Descr.WD3" />
+    <None Include="wwwroot\assets\js\fabric.min.js" />
+    <None Include="wwwroot\assets\js\fabricnew.min.js" />
+    <None Include="wwwroot\assets\js\gsap\Descr.WD3" />
+    <None Include="wwwroot\assets\js\gsap\TweenMax.min.js" />
+    <None Include="wwwroot\assets\js\id2.js" />
+    <None Include="wwwroot\assets\js\id4.js" />
+    <None Include="wwwroot\assets\js\jquery-1.8.3.min.js" />
+    <None Include="wwwroot\assets\js\jquery-ui-1.7.1.custom.min.js" />
+    <None Include="wwwroot\assets\js\jquery.masonry.min.js" />
+    <None Include="wwwroot\assets\js\jquery.swiper.js" />
+    <None Include="wwwroot\assets\js\ld.js" />
+    <None Include="wwwroot\assets\js\ld1.js" />
+    <None Include="wwwroot\assets\js\modernizr.custom.js" />
+    <None Include="wwwroot\assets\js\ocm-main.js" />
+    <None Include="wwwroot\assets\js\selectnav.min.js" />
+    <None Include="wwwroot\assets\js\spectrum.js" />
+    <None Include="wwwroot\fonts\svg\iranyekanwebbold.svg" />
+    <None Include="wwwroot\fonts\svg\iranyekanweblight.svg" />
+    <None Include="wwwroot\fonts\svg\iranyekanwebregular.svg" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb%28FaNum%29.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb%28FaNum%29_Black.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb%28FaNum%29_Bold.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb%28FaNum%29_Light.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb%28FaNum%29_Medium.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb%28FaNum%29_UltraLight.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb_Black.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb_Bold.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb_Light.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb_Medium.woff2" />
+    <None Include="wwwroot\fonts\woff2\IRANSansWeb_UltraLight.woff2" />
+    <None Include="wwwroot\fonts\woff2\iranyekanwebbold.woff2" />
+    <None Include="wwwroot\fonts\woff2\iranyekanweblight.woff2" />
+    <None Include="wwwroot\fonts\woff2\iranyekanwebregular.woff2" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\fullpagejs\dist\jquery.fullpage.extensions.min.js" />
+    <None Include="wwwroot\js\fullpagejs\dist\jquery.fullpage.js" />
+    <None Include="wwwroot\js\fullpagejs\dist\jquery.fullpage.min.css.map" />
+    <None Include="wwwroot\js\fullpagejs\dist\jquery.fullpage.min.js" />
+    <None Include="wwwroot\js\fullpagejs\dist\jquery.fullpage.min.js.map" />
+    <None Include="wwwroot\js\fullpagejs\gulpfile.js" />
+    <None Include="wwwroot\js\fullpagejs\jquery.fullPage.js" />
+    <None Include="wwwroot\js\fullpagejs\lang\russian\how-to-activate-fullpage-extension.md" />
+    <None Include="wwwroot\js\fullpagejs\lang\russian\parallax-extension.md" />
+    <None Include="wwwroot\js\fullpagejs\lang\russian\README.md" />
+    <None Include="wwwroot\js\fullpagejs\lang\spanish\README.md" />
+    <None Include="wwwroot\js\fullpagejs\LICENSE" />
+    <None Include="wwwroot\js\fullpagejs\pure javascript %28Alpha%29\javascript.fullPage.js" />
+    <None Include="wwwroot\js\fullpagejs\pure javascript %28Alpha%29\javascript.fullPage.min.js" />
+    <None Include="wwwroot\js\fullpagejs\pure javascript %28Alpha%29\README.md" />
+    <None Include="wwwroot\js\fullpagejs\README.md" />
+    <None Include="wwwroot\js\fullpagejs\vendors\jquery.easings.min.js" />
+    <None Include="wwwroot\js\fullpagejs\vendors\scrolloverflow.js" />
+    <None Include="wwwroot\js\fullpagejs\vendors\scrolloverflow.min.js" />
+    <None Include="wwwroot\js\fullpagejs\vendors\scrolloverflow.min.js.map" />
+    <None Include="wwwroot\js\jquery-3.2.1.min.js" />
+    <None Include="wwwroot\js\scrolloverflow.js" />
+    <None Include="wwwroot\js\site.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\ContentListFile\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\ContentListFile\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Podcast\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Podcast\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Podcast\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\ContentList\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\ContentList\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\AppSetting\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\AppSetting\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\AppSetting\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Slider\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Slider\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Slider\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\ContentFile\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\ContentFile\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Tag\Create.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Tag\Edit.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Admin\Views\Tag\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Areas\Identity\Views\Register\ConfirmYourMobile.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\_CommentItemsList.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Components\HomeStyle\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Components\HomeNewsAlbum\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Components\HomeVideo\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="Views\Shared\Components\HomeSlider\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+</Project>

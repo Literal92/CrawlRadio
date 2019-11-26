@@ -1,0 +1,25 @@
+﻿@using MusicProject.Areas.Identity
+@using MusicProject.Common.IdentityToolkit
+@using MusicProject.Common.PersianToolkit
+@using MusicProject.Entities.Identity
+@using MusicProject.Services.Contracts.Identity
+@using MusicProject.Services.Identity
+@using MusicProject.ViewModels.Identity
+@using MusicProject.ViewModels.Identity.Emails
+@using MusicProject.ViewModels.Identity.Settings
+@using Microsoft.AspNetCore.Routing
+@using Microsoft.Extensions.Options
+@using System.Globalization
+@using System.Threading.Tasks
+@using System.Net
+@using DNTPersianUtils.Core
+@using MusicProject.DataLayer.Context
+@using MusicProject.Entities.AuditableEntity
+
+@using MusicProject.ViewModels.Content
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, DNTCaptcha.Core
+@addTagHelper *, DNTBreadCrumb.Core
+@addTagHelper *, cloudscribe.Web.Pagination
+@addTagHelper *, MusicProject

@@ -1,0 +1,118 @@
+﻿@model ContentListCollectionViewModel
+
+<div class="row header-slider">
+    <div class="col-sm-12">
+        <a class="slider-header-title">
+            پلی لیست ها
+            <span style="background-color: #86592d;width: 100%;border-radius: 5px;color: black;">
+                NEW
+            </span>
+        </a>
+
+        <a class="show-all-slider btn" asp-controller="PlayList" asp-action="Index">
+            نمایش همه
+        </a>
+    </div>
+</div>
+<div class="row position-relative">
+    <a style="" class="slider-left-arrow homePlayNextBtn">
+        <i class="fas fa-chevron-left"></i>
+    </a>
+
+    <a style="" class="slider-right-arrow homePlayPrevBtn">
+        <i class="fas fa-chevron-right"></i>
+    </a>
+
+
+    <div class="owl-carousel owl-theme home-play-slider col-sm-12">
+
+
+
+        @foreach(var item in Model.SelectedContentList)
+        {
+        <div>
+            <div class="play-list play-mobile" data-id="@item.Id">
+
+                <i class="fas fa-play-circle"></i>
+
+            </div>
+            <div class="hover-container">
+                <div class="playlist-image">
+                    <img src="/content/files/contentlist/@item.Thumbnail" class="hover-image" />
+                </div>
+                <div class="style-title">
+                    @if (item.Title.Length > 20)
+                    {
+                        @item.Title.Substring(0, 20)
+                        <span class="dotted-playlist">
+                            ...
+                        </span>
+                        <span class="d-none">
+                            @item.Title.Substring(17, item.Title.Length - 17)
+
+                        </span>
+                    }
+                    else
+                    {
+                        @item.Title
+                    }
+                </div>
+                <div class="hover-overlay">
+                    <div class="hover-text">
+                        <div class="slide-title">
+                            @if (item.Title.Length > 20)
+                            {
+                                @item.Title.Substring(0, 20)
+                                <span class="dotted-playlist">
+                                    ...
+                                </span>
+                                <span class="d-none">
+                                    @item.Title.Substring(17, item.Title.Length - 17)
+
+                                </span>
+                            }
+                            else
+                            {
+                                @item.Title
+                            }
+                        </div>
+                        <div class="play-list" data-id="@item.Id">
+                            <i class="far fa-play-circle"></i>
+                        </div>
+                        <div>
+                            <a asp-controller="PlayList" asp-action="Detail" asp-route-id="@item.Id">
+
+                                اطلاعات بیشتر
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-title">
+                <span class="categories-text-style">از دسته بندی</span>
+                @for (int j = 0; j < item.CatPL.Count; j++)
+                {                    
+                    <a asp-controller="PlayList" asp-action="Index" asp-route-playlistid="@item.CatPL[j].Id">
+                        @item.CatPL[j].Title
+                    </a>
+                    if (item.CatPL.Count > 1 && item.CatPL.Count - 1 != j)
+                    {
+                        if (j != 2)
+                        {
+                            <span> , </span>
+                        }
+                        else
+                        {
+                            <span> ... , </span>
+                        }
+                    }
+                }
+                <span class="slide-artist float-left">
+                    <i class="fa fa-music"></i>
+                    @item.Contents.Count()
+                </span>
+            </div>
+        </div>
+        }
+    </div>
+</div>

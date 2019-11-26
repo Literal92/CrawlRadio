@@ -1,0 +1,492 @@
+
+@model PodcastViewModel
+@inject IUsersPhotoService PhotoService
+@inject IOptionsSnapshot<SiteSettings> SiteOptions
+@{
+  ViewData["Title"] = ViewBag.BreadCrump;
+
+  if (Context.Request.Query["type"].ToString() == "70")
+  {
+  }
+}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <form asp-controller="Podcast"
+            asp-action="Create"
+            method="post"
+            enctype="multipart/form-data"
+            class="form-horizontal">
+        <div class="card-header">
+          <strong>
+            @ViewBag.BreadCrump
+          </strong>
+
+        </div>
+        <div class="card-body">
+          <partial name="_CustomValidationSummary" />
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="Title"></label>
+            <div class="col-md-10">
+              <input asp-for="Title" class="form-control" placeholder="" type="text">
+              <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 form-control-label" asp-for="Description"></label>
+            <div class="col-md-10">
+              <textarea asp-for="Description" class="form-control" placeholder="" >
+              </textarea>
+              <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label" asp-for="IsPublic">انتشار</label>
+            <div class="col-md-9 col-form-label">
+              <div class="form-check checkbox">
+                <input asp-for="IsPublic" class="form-check-input" type="checkbox" checked="checked">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row ">
+            <label class="col-md-2 control-label">
+              تاریخ انتشار
+            </label>
+            <div class="col-md-10">
+              <input type="text" asp-for="RegisterDate" onclick="PersianDatePicker.Show(this, '@ViewBag.CurrentDate');" class="form-control" value="@ViewBag.CurrentDate" />
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">
+              ساعت انتشار
+            </label>
+            <div class="col-md-10">
+              <div class="input-group bootstrap-timepicker timepicker">
+                <span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+                <input type="text" class="form-control timePicker" asp-for="RegisterTime">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">
+              تگ ها
+            </label>
+            <div class="col-md-10">
+              <input id="tags" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="ta" class="list-unstyled"></ul>
+                @Html.HiddenFor(model => model.Tags)
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">
+              دسته بندی
+            </label>
+            <div class="col-md-10">
+              <input id="iCategory" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="categoryUl" class="list-unstyled"></ul>
+                @Html.HiddenFor(model => model.Category)
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">
+              نویسنده
+            </label>
+            <div class="col-md-10">
+
+              <input id="iAuther" size="50" class="form-control">
+              <br />
+              <div>
+                <ul id="autherUl" class="list-unstyled"></ul>
+                @Html.HiddenFor(model => model.Auther)
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">
+              گوینده
+            </label>
+            <div class="col-md-10">
+
+              <input id="iSpeaker" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="speakerUl" class="list-unstyled"></ul>
+                @Html.HiddenFor(model => model.Speaker)
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">
+              تدوینگر
+            </label>
+            <div class="col-md-10">
+
+              <input id="iEditor" size="50" class="form-control ">
+              <br />
+              <div>
+                <ul id="editorUl" class="list-unstyled"></ul>
+                @Html.HiddenFor(model => model.Editor)
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label class="col-md-2 control-label">متن</label>
+
+            <div class="col col-md-10">
+              <textarea asp-for="ContentText" class="editor">
+              </textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label asp-for="PhotoFileName" class="col-md-2 control-label"></label>
+            <div class="controls col col-md-10">
+              <img src=""
+                   asp-append-version="true" />
+              <input type="file" asp-for="Photo" class="form-control" />
+              <span asp-validation-for="Photo" class="text-danger"></span>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label asp-for="VideoFileName" class="col-md-2 control-label"></label>
+            <div class="controls col col-md-10">
+              <img src=""
+                   asp-append-version="true" />
+              <input type="file" asp-for="Video" class="form-control" />
+              <span asp-validation-for="Video" class="text-danger"></span>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="card-footer">
+          <input type="hidden" asp-for="TypeId" value="@Context.Request.Query["type"]" />
+
+          <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> ارسال</button>
+          <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> بازنشانی</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!--/.col-->
+</div>
+
+
+
+
+@section Scripts
+  {
+
+  <script src="~/content/plugin/tinymce/tinymce.min.js"></script>
+
+  <script>
+    tinymce.init({
+      selector: '.editor',
+
+      plugins: [
+        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+        "searchreplace wordcount visualblocks visualchars code fullscreen",
+        "insertdatetime media nonbreaking save table contextmenu directionality",
+        "emoticons template paste textcolor colorpicker textpattern imagetools"
+      ],
+      paste_data_images: true,
+      images_upload_url: '/admin/content/UploadImage',
+      images_upload_base_path: '',
+      height: "280",
+      directionality: 'rtl',
+      language: 'fa_IR'
+    });</script>
+  <link href="~/content/css/PersianDatePicker.min.css" rel="stylesheet" />
+  <script src="~/content/js/PersianDatePicker.min.js"></script>
+  <script src="~/content/js/bootstrap-timepicker.min.js"></script>
+
+  <link href="~/content/css/bootstrap-timepicker.min.css" rel="stylesheet" />
+  <script type="text/javascript">
+    $('.timePicker').timepicker();
+  </script>
+
+
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <script>
+    $(function () {
+
+      var tagArray = [];
+      var catArray = [];
+      var autherArray = [];
+      var speakerArray = [];
+      var editorArray = [];
+
+
+      function split( val ) {
+        return val.split( /,\s*/ );
+      }
+      function extractLast( term ) {
+        return split( term ).pop();
+      }
+
+      $('body').on('click', '.removeTag', function() {
+
+        var index = tagArray.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          tagArray.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(tagArray);
+        document.getElementById('Tags').value = tagArray;
+      });
+
+      $('body').on('click', '.removeTagCat', function() {
+
+        var index = catArray.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          catArray.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(catArray);
+        document.getElementById('Category').value = catArray;
+      });
+
+
+      $('body').on('click', '.removeTagAuther', function() {
+
+        var index = autherArray.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          autherArray.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(autherArray);
+        document.getElementById('Auther').value = autherArray;
+      });
+
+
+      $('body').on('click', '.removeTagSpeaker', function () {
+
+        var index = speakerArray.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          speakerArray.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(speakerArray);
+        document.getElementById('Speaker').value = speakerArray;
+      });
+
+
+      $('body').on('click', '.removeTagEditor', function () {
+
+        var index = editorArray.indexOf($.trim($(this).data("id")));
+        if (index > -1) {
+          editorArray.splice(index, 1);
+        }
+        $(this).parent().fadeOut();
+        console.log(editorArray);
+        document.getElementById('Editor').value = editorArray;
+      });
+
+
+        $( "#tags" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag", new {type="podcasttag"} )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+
+            return false;
+          },
+          select: function (event, ui) {
+            $("#ta").append("<li data-id=" + $.trim( ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTag\" style='margin-right:30px'  data-id=" +
+              $.trim(
+              ui.item.id) + "></i>"
+              + "</li>");
+            tagArray.push(
+              $.trim(ui.item.id)
+            );
+            console.log(tagArray);
+            this.value = "";
+            document.getElementById('Tags').value = tagArray;
+            return false;
+          }
+        });
+
+
+      $( "#iCategory" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag", new {type="podcastcat"} )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+            return false;
+          },
+          select: function (event, ui) {
+            $("#categoryUl").append("<li data-id=" + $.trim( ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTagCat\" style='margin-right:30px' data-type='podcastcat' data-id=" +
+              $.trim(
+                ui.item.id) + "></i>"
+              + "</li>");
+            catArray.push(
+              $.trim(
+                ui.item.id
+              )
+            );
+            console.log(catArray);
+            this.value = "";
+            document.getElementById('Category').value = catArray;
+            return false;
+          }
+        });
+
+
+
+
+
+      $( "#iAuther" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag", new {type= "podcast" } )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+
+            return false;
+          },
+          select: function (event, ui) {
+            $("#autherUl").append("<li data-id=" + $.trim( ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTagAuther\" style='margin-right:30px' data-type='auther' data-id=" +
+              $.trim(
+                ui.item.id) + "></i>"
+              + "</li>");
+            autherArray.push(
+              $.trim(
+                ui.item.id
+              )
+            );
+            console.log('auther: '+ autherArray);
+            this.value = "";
+            document.getElementById('Auther').value = autherArray;
+            return false;
+          }
+        });
+
+
+      $("#iSpeaker" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag",new {type="podcast"} )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+            return false;
+          },
+          select: function (event, ui) {
+            $("#speakerUl").append("<li data-id=" + $.trim( ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTagSpeaker\" style='margin-right:30px' data-type='speaker' data-id=" +
+              $.trim(
+                ui.item.id) + "></i>"
+              + "</li>");
+            speakerArray.push($.trim(ui.item.id));
+            console.log(speakerArray);
+            this.value = "";
+            document.getElementById('Speaker').value = speakerArray;
+            return false;
+          }
+        });
+      
+
+      
+      $("#iEditor" ).on( "keydown", function( event ) {
+          if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( this ).autocomplete( "instance" ).menu.active ) {
+            event.preventDefault();
+          }
+        })
+        .autocomplete({
+          source: '@Url.Action("GetTags", "Tag",new {type="podcast"} )',
+          search: function() {
+            var term = extractLast(this.value);
+            if ( term.length < 1 ) {
+              return false;
+            }
+          },
+          focus: function() {
+            return false;
+          },
+          select: function (event, ui) {
+            $("#editorUl").append("<li data-id=" + $.trim(ui.item.id) + ">"
+              + ui.item.value +
+              "<i class=\"fa fa-times removeTagEditor\" style='margin-right:30px' data-type='editor' data-id=" +
+              $.trim(ui.item.id) + "></i>"
+              + "</li>");
+            editorArray.push($.trim(ui.item.id));
+            console.log(editorArray);
+            this.value = "";
+            document.getElementById('Editor').value = editorArray;
+            return false;
+          }
+        });
+    });
+  </script>
+}
