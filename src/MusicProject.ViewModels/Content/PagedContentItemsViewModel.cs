@@ -12,6 +12,7 @@ namespace MusicProject.ViewModels.Content
         }
 
         public List<Entities.Content.Content> Contents { get; set; }
+        public List<Entities.Content.Main> Mains { get; set; }
         public List<Entities.Content.ContentSelected> SelectedContents { get; set; }
 
         public string Type { get; set; } = string.Empty;

@@ -258,7 +258,7 @@ namespace MusicProject.Areas.Admin.Controllers
                     Title = model.Title.Trim(),
                     Lead = model.Description,
                     Priority = model.Priority,
-                    CategoryId = (int)model.CategoryId,
+                    //CategoryId = (int)model.CategoryId,
                     TypeId = model.TypeId,
                     Svg = result,
                     Link = model.Link,

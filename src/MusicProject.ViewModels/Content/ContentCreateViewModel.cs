@@ -41,7 +41,7 @@ namespace MusicProject.ViewModels.Content
     public CategoryViewModel Category { get; set; }
 
     [Display(Name = "دسته بندی")]
-    [Required(ErrorMessage = "لطفا دسته بندی را انتخاب  نمایید")]
+    //[Required(ErrorMessage = "لطفا دسته بندی را انتخاب  نمایید")]
 
     public int? CategoryId { get; set; }
 

@@ -90,7 +90,7 @@ namespace MusicProject.Areas.Identity.Controllers
                     {
                         return Redirect(returnUrl);
                     }
-          return RedirectToAction("Index", "Category", new { area = "Admin", type = 1 });
+          return RedirectToAction("Index", "Content", new { area = "Admin", type = 1 });
         }
 
                 if (result.RequiresTwoFactor)

@@ -2,6 +2,9 @@
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MusicProject.Entities.Content;
+using MusicProject.Services.Content;
+using MusicProject.Services.Contracts.Content;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -17,11 +20,19 @@ namespace MusicProject.Areas.Admin.Controllers
     [DisplayName("ادمین")]
     public class HomeController : Controller
     {
+        private readonly IMainService _mainService;
+        //private readonly CrawlerData _crawlerData;
+        public HomeController(IMainService mainService
+            /*CrawlerData crawlerData*/)
+        {
+            _mainService = mainService;
+            //_crawlerData = crawlerData;
+        }
         // GET: Home
         [DisplayName("ایندکس ادمین")]
         public async Task<ActionResult> Index()
         {
-            ViewData["image"] = await startCrawlerasync();
+            await _mainService.startCrawlerasync();
             return View();
         }
 
@@ -100,23 +111,5 @@ namespace MusicProject.Areas.Admin.Controllers
             }
         }
 
-        public async Task<List<string>> startCrawlerasync()
-        {
-            //the url of the page
-            var url = "https://www.automobile.tn/fr/neuf/bmw";
-            var httpClient = new HttpClient();
-            var html = await httpClient.GetStringAsync(url);
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(html);
-            var divs =
-                htmlDocument.DocumentNode.Descendants("div")
-                .Where(node => node.GetAttributeValue("class", "").Equals("versions-item")).ToList();
-            List<string> Image = new List<string>();
-            foreach(var div in divs)
-            {
-                Image.Add(div.Descendants("source").FirstOrDefault().ChildAttributes("srcset").FirstOrDefault().Value);
-            }
-            return Image;
-        }
     }
 }

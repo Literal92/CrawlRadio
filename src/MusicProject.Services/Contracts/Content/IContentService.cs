@@ -17,7 +17,7 @@ namespace MusicProject.Services.Contracts.Content
         IList<Entities.Content.Content> GetTopByType(string typeId, int pageNumber, int pageSize, string title);
         Task<IList<Entities.Content.Content>> GetByListIdAsync(List<int> id);
         int GetCount(int typeId, string title);
-
+        Task Create(Entities.Content.Content product);
         IList<Entities.Content.Content> GetTopByTypeAndSkip(int typeId, int top, int skip, int catId);
         Entities.Content.Content FindById(int id);
         Entities.Content.Content GetByTitle(string title);

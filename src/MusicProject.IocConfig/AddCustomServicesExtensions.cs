@@ -97,6 +97,7 @@ namespace MusicProject.IocConfig
             services.AddScoped<ICategoryCommentService, EfCategoryCommentService>();
 
             services.AddScoped<ITokenStoreService, TokenStoreService>();
+            services.AddScoped<IMainService, EfMainService>();
             return services;
         }
     }

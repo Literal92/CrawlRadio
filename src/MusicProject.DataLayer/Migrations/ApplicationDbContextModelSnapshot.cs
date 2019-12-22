@@ -15,7 +15,7 @@ namespace MusicProject.DataLayer.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
+                .HasAnnotation("ProductVersion", "2.1.14-servicing-32113")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -431,6 +431,8 @@ namespace MusicProject.DataLayer.Migrations
                     b.Property<string>("Mp3320");
 
                     b.Property<string>("Mp364");
+
+                    b.Property<byte[]>("Music");
 
                     b.Property<string>("Pdf");
 
@@ -966,6 +968,45 @@ namespace MusicProject.DataLayer.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Devices","dbo");
+                });
+
+            modelBuilder.Entity("MusicProject.Entities.Content.Main", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedByBrowserName")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("CreatedByIp")
+                        .HasMaxLength(255);
+
+                    b.Property<int?>("CreatedByUserId");
+
+                    b.Property<DateTimeOffset?>("CreatedDateTime");
+
+                    b.Property<string>("Link");
+
+                    b.Property<string>("ModifiedByBrowserName")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("ModifiedByIp")
+                        .HasMaxLength(255);
+
+                    b.Property<int?>("ModifiedByUserId");
+
+                    b.Property<DateTimeOffset?>("ModifiedDateTime");
+
+                    b.Property<string>("Music");
+
+                    b.Property<string>("SubTitle");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Mains","dbo");
                 });
 
             modelBuilder.Entity("MusicProject.Entities.Content.Order", b =>

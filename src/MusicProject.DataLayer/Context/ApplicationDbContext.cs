@@ -192,6 +192,7 @@ namespace MusicProject.DataLayer.Context
         public virtual DbSet<SessionRequest> SessionRequests { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
+        public virtual DbSet<Main> Mains { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -348,6 +349,10 @@ namespace MusicProject.DataLayer.Context
             builder.Entity<PodcastComment>(entity =>
             {
                 entity.ToTable("PodcastComments", "dbo");
+            });
+            builder.Entity<Main>(entity =>
+            {
+                entity.ToTable("Mains", "dbo");
             });
             builder.Entity<ContentListComment>(entity =>
             {

@@ -5,24 +5,32 @@ using Microsoft.AspNetCore.Http;
 namespace MusicProject.Services.Contracts
 {
 
-  public interface IUploadService
-  {
- 
-    string UploadPicResize(IFormFile file, 
-      string path,
-      int maxPicWidth,
-      ref long serverFileSize,
-      int[] size,
-      EnumC.Dimensions dimension, ref string[] resized);
+    public interface IUploadService
+    {
 
-    string UploadFile(
-      IFormFile file,
-      string path,
-      ref long serverFileSize,
-      string[] allowedExtensions
+        string UploadPicResize(IFormFile file,
+          string path,
+          int maxPicWidth,
+          ref long serverFileSize,
+          int[] size,
+          EnumC.Dimensions dimension, ref string[] resized);
 
-    );
-    string UploadFile(
+        string UploadFile(
+          IFormFile file,
+          string path,
+          ref long serverFileSize,
+          string[] allowedExtensions
+
+        );
+
+        string UploadFileRadio(
+    byte[] file,
+    string path,
+    ref long serverFileSize,
+    string[] allowedExtensions
+
+  );
+        string UploadFile(
       IFormFile file,
       string path,
       ref long serverFileSize,
@@ -30,6 +38,6 @@ namespace MusicProject.Services.Contracts
       string fileName
 
     );
-    string ResizeImage(string source, string destination,string album, int size, EnumC.Dimensions dimension);
-  }
+        string ResizeImage(string source, string destination, string album, int size, EnumC.Dimensions dimension);
+    }
 }

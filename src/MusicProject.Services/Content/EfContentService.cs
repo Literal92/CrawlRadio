@@ -154,7 +154,7 @@ namespace MusicProject.Services.Content
           IFormFile Mp364, IFormFile Mp3128, IFormFile Mp3320)
         {
 
-            var directoryName = _categoryService.FindByIdAsync(product.CategoryId).Result.Description.SafeFileName();
+            var directoryName = "";
 
             if (!Directory.Exists(_hostingEnvironment.WebRootPath + "/content/files/album/" + directoryName))
                 Directory.CreateDirectory(_hostingEnvironment.WebRootPath + "/content/files/album/" + directoryName);
@@ -686,6 +686,11 @@ namespace MusicProject.Services.Content
               query.Where(l => l.Title.Contains(title));
             return query.ToList().Count;
 
+        }
+
+        public async Task Create(Entities.Content.Content product){
+            _products.Add(product);
+            await _uow.SaveChangesAsync();
         }
 
         public IList<Entities.Content.Content> GetTopByType(string typeId, int pageNumber, int pageSize, string title)
